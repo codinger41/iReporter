@@ -28,19 +28,6 @@
   display: flex;
 }
 
-.login-box {
-  display: flex;
-  flex: 0 1 auto; 
-  flex-direction: column;
-  padding: 46px;
-  background-color: #eee;
-  border: 1px solid #ddd;
-  border-radius: 20px;
-  text-align: center;
-  width: 350px;
-  height: 400px;
-}
-
 h2, h3, p { 
   font-family: lato;
   font-weight: 400;
@@ -50,34 +37,8 @@ h2, h3, p {
 .fa { 
   color: #222;
   margin: 6px;
-} 
-
-input {
-  background-color: inherit;
-  border: 1px solid #333;
-  border-radius: 10px;
-  margin: 4px;
-  padding: 8px;
-  color: #111;
-  height: 30px;
 }
 
-.btns {
-  display: block;
-  margin: 8px;
-  flex-direction: row;
-  justify-content: space-between;
-}
-
-button {
-  padding: 15px 60px;
-  background-color: #FFBA00;
-  font-weight: 700;
-  text-transform: uppercase;
-  border-radius: 30px;
-  cursor: pointer;
-  outline: none;
-}
 
 footer {
   padding: 4px;
@@ -197,4 +158,76 @@ h4 {
   .nav-links:hover {
       color: rgba(255, 255, 255, 1);
   }
+}
+
+.row {
+  display: flex;
+  flex: 0 1 auto; 
+  flex-direction: row;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  text-align: center;
+  width: 900px;
+  height: 440px;
+}
+
+.bg-img {
+  height: 440px;
+  width: 500px;
+}
+
+.login-box {
+  display: flex;
+  flex: 0 1 auto; 
+  flex-direction: column;
+  padding: 46px;
+  background-color:#ffffff;
+  text-align: center;
+  width: 400px;
+  height: 440px;
+  justify-content: center;
+}
+
+input {
+  background-color: inherit;
+  border: 1px solid #333;
+  border-radius: 10px;
+  margin: 4px;
+  padding: 8px;
+  color: #111;
+  height: 50px;
+}
+
+.btns {
+  display: block;
+  margin: 8px;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+button {
+  padding: 15px 60px;
+  background-color: #EE2375;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+}
+
+.signin-txt {
+  color: #ffffff
+}
+
+.welcome-box {
+  position: absolute;
+  top: 100px;
+}
+
+.welcome {
+  font-weight: 800;
+  text-align: center;
+  color: aliceblue;
+  font-family: 'OperatorMono';
+  font-size: 40px
 }
