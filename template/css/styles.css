@@ -231,3 +231,23 @@ button {
   font-family: 'OperatorMono';
   font-size: 40px
 }
+
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  color: white;
+  text-align: center;
+  background-color: #053D48;
+  height: 40px;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer-text {
+  text-align: center;
+  color: #ffffff;
+  font-family: 'OperatorMono';
+  margin-top: 10px
+}
