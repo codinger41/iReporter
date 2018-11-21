@@ -28,12 +28,6 @@
   display: flex;
 }
 
-h2, h3, p { 
-  font-family: lato;
-  font-weight: 400;
-  color: #111;
-}
-
 .fa { 
   color: #222;
   margin: 6px;
@@ -171,9 +165,10 @@ h4 {
   height: 440px;
 }
 
-.bg-img {
+.left-box {
   height: 440px;
   width: 500px;
+  background-color: #053D48;
 }
 
 .login-box {
@@ -251,3 +246,25 @@ button {
   font-family: 'OperatorMono';
   margin-top: 10px
 }
+
+.description {
+  font-weight: 800;
+  text-align: center;
+  color: aliceblue;
+  font-family: 'OperatorMono';
+  font-size: 28px
+}
+
+.description-long {
+  text-align: center;
+  color: aliceblue;
+  font-family: 'OperatorMono';
+  font-size: 17px
+}
+
+.icon {
+  color: #ffffff;
+  font-size: 100px;
+  margin-top: 150px;
+}
+
