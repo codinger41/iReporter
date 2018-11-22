@@ -4,7 +4,6 @@
   src: url("./operator-mono.otf");
   }
 
-  
 .body {
   font-family: 'Lato', sans-serif;
   align-content: center;
@@ -53,10 +52,6 @@ footer {
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
-}
-
-h4 {
-  color: red;
 }
 
 .title {
@@ -200,7 +195,7 @@ input {
   justify-content: space-between;
 }
 
-button {
+.auth-button {
   padding: 15px 60px;
   background-color: #EE2375;
   font-weight: 700;
@@ -268,3 +263,81 @@ button {
   margin-top: 150px;
 }
 
+/* grid */
+
+*, *:after, *:before {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  background:#f0f0f0;
+}
+img {
+  max-width:100%;
+}
+.card-grid {
+  width:100%;
+}
+.card-grid:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.card-wrap {
+  float:left;
+  width:100%;
+  padding:5px;
+}
+@media (min-width: 500px) {
+  .card-wrap {
+    width:50%;
+  }
+}
+@media (min-width: 720px) {
+  .card-wrap {
+    width:25%;
+  }
+}
+.card {
+  background-color:white;
+  border-radius:5px;
+  border:1px solid #ccc;
+  border-bottom:2px solid #ccc;
+}
+.card > div {
+  padding:0 1em;
+}
+
+.sm-icon {
+  color: aliceblue;
+}
+
+.button-sm-edit {
+  padding: 15px 15px;
+  background-color: #1C6663;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+}
+.button-sm-delete {
+  padding: 15px 15px;
+  background-color: red;
+  font-weight: 700;
+  text-transform: uppercase;
+  border-radius: 30px;
+  cursor: pointer;
+  outline: none;
+}
+.buttons {
+  align-self: center;
+  align-content: center;
+  align-items: center;
+}
+
+.record-status {
+  color: #1C6663
+}
