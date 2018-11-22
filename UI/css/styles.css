@@ -383,25 +383,6 @@ select {
   cursor: pointer;
 }
 
-.cta {
-  background-color: white;
-  border: 1px solid lightgrey;
-  border-radius: 6px;
-  color: tomato;
-  display: inline-block;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 1em;
-  font-weight: 700;
-  margin-bottom: 1em;
-  padding: .3em 1em;
-  text-decoration: none;
-}
-.cta:hover {
-  background-color: lightgrey;
-  color: slategrey;
-  text-decoration: none;
-}
-
 .modaloverlay {
   background: rgba(0, 0, 0, 0.8);
   bottom: 0;
@@ -526,4 +507,26 @@ select {
 .stat-text {
   font-size: 10px;
   color: aliceblue
+}
+
+.new-record {
+  display: flex;
+  flex: 0 1 auto; 
+  flex-direction: column;
+  padding: 46px;
+  background-color:#ffffff;
+  text-align: center;
+  width: 500px;
+  height: 540px;
+  border-radius: 30px;
+}
+
+.dropdown {
+  background-color: inherit;
+  border: 1px solid #333;
+  border-radius: 10px;
+  margin: 4px;
+  padding: 8px;
+  color: #111;
+  height: 50px;
 }
