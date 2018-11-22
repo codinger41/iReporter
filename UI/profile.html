@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
     <link rel="stylesheet" href="css/styles.css">
-    <title>sign in - iReporter</title>
+    <title>My profile - iReporter</title>
   </head>
   <body class="body">
     <nav class="navbar">
@@ -32,6 +32,27 @@
           </li>
       </ul>
     </nav>
+    <div class="welcome-box">
+      <h1 class="welcome"> Your Records</h1>
+    </div>
+    <div class="filter-row">
+      <div class="selects">
+        <select>
+          <option>Choose type of reports to show</option>
+          <option value="1">Intervention</option>
+          <option value="2">Red flag</option>
+        </select>
+      </div>
+      <div class="selects">
+        <select>
+          <option>Choose status of reports to show</option>
+          <option value="1">Under Investigation</option>
+          <option value="2">Resolved</option>
+          <option value="3">Rejected</option>
+        </select>
+      </div>
+      <button class="filter-button" >Filter</button>
+    </div>
     <div class="card-grid">
       <div class="card-wrap">
         <div class="card">

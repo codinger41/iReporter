@@ -223,7 +223,6 @@ input {
 }
 
 .footer {
-  position: fixed;
   left: 0;
   bottom: 0;
   width: 100%;
@@ -278,6 +277,7 @@ img {
 }
 .card-grid {
   width:100%;
+  margin-top: 80px
 }
 .card-grid:after {
   content: "";
@@ -340,4 +340,45 @@ img {
 
 .record-status {
   color: #1C6663
+}
+
+/* filter select tag */
+
+.filter-row {
+  flex-direction: row;
+  position: absolute;
+  right: 0;
+  display: flex;
+  top: 100px;
+}
+
+.selects {
+  height: 29px;
+  overflow: hidden;
+  width: 255px;
+  background-color: #053D48;
+  -webkit-border-radius: 20px;
+  -moz-border-radius: 20px;
+  border-radius: 20px;
+}
+
+select {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  height: 29px;
+  width: 268px;
+  color: aliceblue;
+  background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
+}
+
+.filter-button {
+  height: 29px;
+  width: 60px;
+  margin-right: 10px;
+  margin-left: 10px;
+  background-color: #053D48;
+  color: aliceblue;
+  border-radius: 20px;
+  cursor: pointer;
 }
