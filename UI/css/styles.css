@@ -495,3 +495,35 @@ select {
   flex-direction: row;
   justify-content: space-between
 }
+
+.user-record-stats {
+  background-color: #ffffff;
+  width: 302px;
+  height: 70px;
+  position: absolute;
+  top: 80px;
+  left: 5px;
+}
+
+.stat-box {
+  background-color: #053D48;
+  width: 100px;
+  height: 70px;
+  border-color: aliceblue;
+  border: #ddd;
+  border-width: 5px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.stat-number {
+  font-size: 20px;
+  color: aliceblue
+}
+.stat-text {
+  font-size: 10px;
+  color: aliceblue
+}
