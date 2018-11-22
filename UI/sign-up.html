@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Josefin+Sans" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <title>Sign Up - iReporter</title>
+  </head>
+  <body class="body">
+    <nav class="navbar">
+      <span class="navbar-toggle" id="js-navbar-toggle">
+        <i class="fas fa-bars"></i>
+      </span>
+      <a href="#" class="logo"><h1 class="title"> iReporter </h1></a>
+      <ul class="main-nav" id="js-menu">
+          <li>
+              <a href="#" class="nav-links">Home</a>
+          </li>
+          <li>
+              <a href="#" class="nav-links">Admin</a>
+          </li>
+          <li>
+              <a href="#" class="nav-links">New record</a>
+          </li>
+          <li>
+              <a href="#" class="nav-links">My Profile</a>
+          </li>
+          <li>
+              <a href="#" class="nav-links">Logout</a>
+          </li>
+      </ul>
+    </nav>
+    <div class="boxes">
+      <div class="welcome-box">
+        <h1 class="welcome"> Welcome to iReporter!</h1>
+      </div>
+      <div class="row">
+        <div class="left-box">
+          <div>
+            <i class="fa fa-bullhorn icon"></i>
+            <h1 class="description">iReporter</h1>
+            <h2 class="description-long" >Report corrupt activities.</h2>
+          </div>
+        </div>
+        <form class="login-box">
+            <h2> Sign Up </h2>
+            <input 
+              type="email"
+              placeholder="Email"
+              required
+            />
+            <input 
+              type="tel"
+              placeholder="Phone"
+              required
+            />
+            <input 
+              type="password"
+              placeholder="Password"
+              required
+            />
+            <div class="btns">
+              <button
+                class="auth-button"
+              >
+                <h3 class="signin-txt"> sign Up </h3>
+              </button>
+            </div>
+            <div class="socials">
+              <p>Already have an account? <a href='./sign-in.html'> Sign In </a></p>
+            </div>
+        </form>
+      </div>
+    </div>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/all.js" integrity="sha384-xymdQtn1n3lH2wcu0qhcdaOpQwyoarkgLVxC/wZ5q7h9gHtxICrpcaSUfygqZGOe"
+      crossorigin="anonymous"></script>
+    <script src="js/index.js"></script>
+  </body>
+  <footer class="footer">
+      <p class="footer-text">Copyright iReporter 2018</p>
+  </footer>
+</html>
