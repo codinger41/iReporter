@@ -66,4 +66,31 @@ export default class RecordsController {
       });
     }
   }
+
+  /**
+   * @description - Get a specific red-flag record by id
+   * @static
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   *
+   * @memberof RecordsController
+   *
+   * @returns {object} Class instance
+   */
+
+  static getSpecificRedFlagRecord(req, res) {
+    const record = records.find(singleRecord => singleRecord.id === Number(req.params.id));
+    if (record) {
+      res.json({
+        status: 200,
+        data: [record],
+      });
+    } else {
+      res.json({
+        status: 404,
+        error: 'No record was found with the given id.',
+      });
+    }
+  }
 }
