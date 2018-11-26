@@ -39,4 +39,31 @@ export default class RecordsController {
       });
     }
   }
+
+  /**
+   * @description - Get all red-flag records.
+   * @static
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   *
+   * @memberof RecordsController
+   *
+   * @returns {object} Class instance
+   */
+
+  static getAllRedFlagRecords(req, res) {
+    const redFlagRecords = records.filter(record => record.type === 'red-flag');
+    if (redFlagRecords.length >= 1) {
+      res.json({
+        status: 200,
+        data: redFlagRecords,
+      });
+    } else {
+      res.json({
+        status: 404,
+        message: 'There are no red-flag records.',
+      });
+    }
+  }
 }
