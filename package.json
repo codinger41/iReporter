@@ -1,0 +1,34 @@
+{
+  "name": "ireporter",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/leksyib/iReporter.git"
+  },
+  "author": "leksyib",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/leksyib/iReporter/issues"
+  },
+  "homepage": "https://github.com/leksyib/iReporter#readme",
+  "dependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-2": "^6.24.1",
+    "body-parser": "^1.18.3",
+    "eslint": "^5.9.0",
+    "eslint-cli": "^1.1.1",
+    "express": "^4.16.4"
+  },
+  "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-react": "^7.11.1"
+  }
+}
