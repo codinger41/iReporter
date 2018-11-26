@@ -2,7 +2,18 @@ import faker from 'faker';
 import records from '../data/records';
 
 export default class RecordsController {
-  static addRecord(req, res) {
+  /**
+   * @description - Add a new red-flag record
+   * @static
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   *
+   * @memberof RecordsController
+   *
+   * @returns {object} Class instance
+   */
+  static addRedFlagRecord(req, res) {
     const { body } = req;
     const {
       location, comment,
