@@ -24,9 +24,12 @@ export default class RecordsController {
         error: 'Please fill in the location and comment.',
       });
     } else {
+      // pick last record from records array, check it's id
+      // the last record's id + 1 is the new record's id
+      const lastRecord = records.reverse()[0];
       body.createdBy = 1;
       body.createdOn = faker.date.recent();
-      body.id = faker.random.number();
+      body.id = lastRecord.id + 1;
       records.push(req.body);
       res.json({
         status: 200,
