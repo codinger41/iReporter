@@ -1,3 +1,4 @@
+/* eslint-disable no-dupe-class-members */
 import faker from 'faker';
 import records from '../data/records';
 
@@ -88,6 +89,64 @@ export default class RecordsController {
       res.json({
         status: 200,
         data: [record],
+      });
+    } else {
+      res.json({
+        status: 404,
+        error: 'No record was found with the given id.',
+      });
+    }
+  }
+
+  /**
+   * @description - Edit a specific red-flag record's location by id
+   * @static
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   *
+   * @memberof RecordsController
+   *
+   * @returns {object} Class instance
+   */
+
+  static editRecordLocation(req, res) {
+    const record = records.find(singleRecord => singleRecord.id === Number(req.params.id));
+    if (record) {
+      const { location } = req.body;
+      record.location = location;
+      res.json({
+        id: record.id,
+        message: 'Updated red-flag record\'s location',
+      });
+    } else {
+      res.json({
+        status: 404,
+        error: 'No record was found with the given id.',
+      });
+    }
+  }
+
+  /**
+   * @description - Edit a specific red-flag record's comment by id
+   * @static
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   *
+   * @memberof RecordsController
+   *
+   * @returns {object} Class instance
+   */
+
+  static editRecordComment(req, res) {
+    const record = records.find(singleRecord => singleRecord.id === Number(req.params.id));
+    if (record) {
+      const { comment } = req.body;
+      record.comment = comment;
+      res.json({
+        id: record.id,
+        message: 'Updated red-flag record\'s location',
       });
     } else {
       res.json({
