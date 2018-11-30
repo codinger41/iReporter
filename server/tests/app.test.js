@@ -34,10 +34,10 @@ describe('GET api/v1/red-flags/:id', () => {
         if (err) done();
         const { body } = res;
         expect(body).to.be.an('object');
-        expect(body).to.haveOwnProperty('status' || 'data' || 'error');
+        expect(body).to.haveOwnProperty('status' && 'data');
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(200);
-        expect(body.data[0]).to.haveOwnProperty('id');
+        expect(body.data[0]).to.haveOwnProperty('id' && 'comment' && 'location' && 'type');
         done();
       });
   });
@@ -78,7 +78,7 @@ describe('POST api/v1/red-flags', () => {
         expect(body.status).to.be.equals(200);
         expect(body.data[0]).to.be.an('object');
         expect(body.data[0].message).to.be.a('string');
-        expect(body.data[0]).to.haveOwnProperty('id');
+        expect(body.data[0]).to.haveOwnProperty('id' && 'message');
         expect(body.data[0].message).to.be.equals('Created red-flag record');
         done();
       });
@@ -122,7 +122,7 @@ describe('PATCH api/v1/red-flags/:id/location', () => {
         expect(body.status).to.be.equals(200);
         expect(body).to.haveOwnProperty('data');
         expect(body.data[0]).to.haveOwnProperty('message');
-        expect(body.data[0]).to.haveOwnProperty('id');
+        expect(body.data[0]).to.haveOwnProperty('id' && 'message');
         done();
       });
   });
@@ -148,6 +148,26 @@ describe('PATCH api/v1/red-flags/:id/location', () => {
   });
 });
 
+describe('PATCH api/v1/red-flags/:id/location', () => {
+  it('should return an error if the location field is empty', (done) => {
+    chai.request(app)
+      .patch('/api/v1/red-flags/1/location')
+      .send({
+        location: undefined,
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.equals('Location is required.');
+        done();
+      });
+  });
+});
+
 describe('PATCH api/v1/red-flags/:id/comment', () => {
   it('edit the comment value of a record if it exists', (done) => {
     chai.request(app)
@@ -162,7 +182,7 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(200);
         expect(body).to.haveOwnProperty('data');
-        expect(body.data[0]).to.haveOwnProperty('id');
+        expect(body.data[0]).to.haveOwnProperty('id' && 'message');
         done();
       });
   });
@@ -182,6 +202,60 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(404);
         expect(body).to.haveOwnProperty('error');
+        done();
+      });
+  });
+});
+
+describe('PATCH api/v1/red-flags/:id/comment', () => {
+  it('should return an error if the comment field is empty', (done) => {
+    chai.request(app)
+      .patch('/api/v1/red-flags/1/comment')
+      .send({
+        comment: undefined,
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.equals('Comment is required.');
+        done();
+      });
+  });
+});
+
+describe('Delete api/v1/red-flags/:id/', () => {
+  it('should delete a record by id if it exists', (done) => {
+    chai.request(app)
+      .delete('/api/v1/red-flags/1/')
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(200);
+        expect(body).to.haveOwnProperty('data');
+        expect(body.data[0]).to.haveOwnProperty('id' && 'message');
+        done();
+      });
+  });
+});
+
+describe('Delete api/v1/red-flags/:id/', () => {
+  it('should delete a record by id if it doesn\'t exist', (done) => {
+    chai.request(app)
+      .delete('/api/v1/red-flags/1/')
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(404);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.equals('No record was found with the given id.');
         done();
       });
   });
