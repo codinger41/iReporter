@@ -6,6 +6,7 @@ const routes = (app) => {
   app.get('/api/v1/red-flags/:id', recordsController.getSpecificRedFlagRecord);
   app.patch('/api/v1/red-flags/:id/location', recordsController.editRecordLocation);
   app.patch('/api/v1/red-flags/:id/comment', recordsController.editRecordComment);
+  app.delete('/api/v1/red-flags/:id/', recordsController.deleteARecord);
 };
 
 export default routes;
