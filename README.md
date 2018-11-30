@@ -8,6 +8,6 @@ iReporter is a web app that enables citizens bring any form of corruption to the
 
 ## 📖 Getting started
 
-`$ git clone https://github.com/leksyib` <br/>
+`$ git clone https://github.com/leksyib/iReporter.git` <br/>
 `$ yarn` <br/>
 `$ yarn start` <br/>
