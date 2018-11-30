@@ -1,0 +1,16 @@
+
+sudo: false
+dist: trusty
+language: node_js
+node_js:
+  - "10"
+services:
+  - postgresql
+before_script: 
+  - npm install
+script:
+  - npm run test
+after_success:
+  - npm run coverage
+env:
+  global:
