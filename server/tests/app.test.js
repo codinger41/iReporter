@@ -169,9 +169,9 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
 });
 
 describe('PATCH api/v1/red-flags/:id/comment', () => {
-  it('edit the comment value of a record if it exists', (done) => {
+  it('should return an error if the id is not existing', (done) => {
     chai.request(app)
-      .patch('/api/v1/red-flags/1/comment')
+      .patch('/api/v1/red-flags/non-existing-id/comment')
       .send({
         comment: faker.random.words(),
       })
@@ -180,9 +180,8 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
         const { body } = res;
         expect(body).to.be.an('object');
         expect(body.status).to.be.a('number');
-        expect(body.status).to.be.equals(200);
-        expect(body).to.haveOwnProperty('data');
-        expect(body.data[0]).to.haveOwnProperty('id');
+        expect(body.status).to.be.equals(404);
+        expect(body).to.haveOwnProperty('error');
         done();
       });
   });
