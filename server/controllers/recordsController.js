@@ -116,8 +116,11 @@ export default class RecordsController {
       const { location } = req.body;
       record.location = location;
       res.json({
-        id: record.id,
-        message: 'Updated red-flag record\'s location',
+        status: 200,
+        data: [{
+          id: record.id,
+          message: 'Updated red-flag record\'s location',
+        }],
       });
     } else {
       res.json({
@@ -145,8 +148,13 @@ export default class RecordsController {
       const { comment } = req.body;
       record.comment = comment;
       res.json({
-        id: record.id,
-        message: 'Updated red-flag record\'s comment',
+        status: 200,
+        data: [
+          {
+            id: record.id,
+            message: 'Updated red-flag record\'s comment',
+          },
+        ],
       });
     } else {
       res.json({

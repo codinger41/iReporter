@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start-server": "babel-node --presets env,stage-2 server/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha server/tests/app.test.js --require babel-register --exit"
   },
   "repository": {
     "type": "git",
@@ -21,11 +21,15 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
+    "babel-register": "^6.26.0",
     "body-parser": "^1.18.3",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "eslint": "^5.9.0",
     "eslint-cli": "^1.1.1",
     "express": "^4.16.4",
     "faker": "^4.1.0",
+    "mocha": "^5.2.0",
     "validator": "^10.9.0"
   },
   "devDependencies": {
