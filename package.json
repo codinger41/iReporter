@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start-server": "babel-node --presets env,stage-2 server/app.js",
+    "start": "babel-node --presets env,stage-2 server/app.js",
     "test": "mocha server/tests/app.test.js --require babel-register --exit",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov yarn test",
     "coverage": "nyc report --reporter=text-lcov | coveralls"
