@@ -14,7 +14,7 @@ script:
 after_success:
   - npm run coveralls
   - npm run coverage
-  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
+  - ./cc-test-reporter after-build -r 4fe40207fc583364c7daaa5e4801c3a7e4ee6542322594f6278011169bd9375e --exit-code $TRAVIS_TEST_RESULT
 env:
   global:
     - CC_TEST_REPORTER_ID= 4fe40207fc583364c7daaa5e4801c3a7e4ee6542322594f6278011169bd9375e
