@@ -6,10 +6,15 @@ node_js:
   - "10"
 before_script: 
   - npm install
+  - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
+  - chmod +x ./cc-test-reporter
+  - ./cc-test-reporter before-build
 script:
   - npm run test
 after_success:
   - npm run coveralls
   - npm run coverage
+  - ./cc-test-reporter after-build --exit-code $TRAVIS_TEST_RESULT
 env:
   global:
+    - CC_TEST_REPORTER_ID= 4fe40207fc583364c7daaa5e4801c3a7e4ee6542322594f6278011169bd9375e
