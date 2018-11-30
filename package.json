@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start-server": "babel-node --presets env,stage-2 server/app.js",
-    "test": "mocha server/tests/app.test.js --require babel-register --exit"
+    "test": "mocha server/tests/app.test.js --require babel-register --exit",
+    "coveralls": "nyc --reporter=lcov --reporter=text-lcov yarn test",
+    "coverage": "nyc report --reporter=text-lcov | coveralls"
   },
   "repository": {
     "type": "git",
@@ -25,11 +27,13 @@
     "body-parser": "^1.18.3",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
+    "coveralls": "^3.0.2",
     "eslint": "^5.9.0",
     "eslint-cli": "^1.1.1",
     "express": "^4.16.4",
     "faker": "^4.1.0",
     "mocha": "^5.2.0",
+    "nyc": "^13.1.0",
     "validator": "^10.9.0"
   },
   "devDependencies": {
