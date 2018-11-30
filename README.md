@@ -1,5 +1,5 @@
 # iReporter
-
+[![Build Status](https://travis-ci.com/leksyib/iReporter.svg?branch=develop)](https://travis-ci.com/leksyib/iReporter)
 [![Maintainability](https://api.codeclimate.com/v1/badges/de0518f48aab44aac87b/maintainability)](https://codeclimate.com/github/leksyib/iReporter/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/de0518f48aab44aac87b/test_coverage)](https://codeclimate.com/github/leksyib/iReporter/test_coverage)
 
