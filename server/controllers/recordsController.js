@@ -114,11 +114,21 @@ export default class RecordsController {
     const record = records.find(singleRecord => singleRecord.id === Number(req.params.id));
     if (record) {
       const { location } = req.body;
-      record.location = location;
-      res.json({
-        id: record.id,
-        message: 'Updated red-flag record\'s location',
-      });
+      if (!location) {
+        res.json({
+          status: 400,
+          error: 'Location is required.',
+        });
+      } else {
+        record.location = location;
+        res.json({
+          status: 200,
+          data: [{
+            id: record.id,
+            message: 'Updated red-flag record\'s location',
+          }],
+        });
+      }
     } else {
       res.json({
         status: 404,
@@ -143,11 +153,23 @@ export default class RecordsController {
     const record = records.find(singleRecord => singleRecord.id === Number(req.params.id));
     if (record) {
       const { comment } = req.body;
-      record.comment = comment;
-      res.json({
-        id: record.id,
-        message: 'Updated red-flag record\'s comment',
-      });
+      if (!comment) {
+        res.json({
+          status: 400,
+          error: 'Comment is required.',
+        });
+      } else {
+        record.comment = comment;
+        res.json({
+          status: 200,
+          data: [
+            {
+              id: record.id,
+              message: 'Updated red-flag record\'s comment',
+            },
+          ],
+        });
+      }
     } else {
       res.json({
         status: 404,
@@ -174,9 +196,13 @@ export default class RecordsController {
       const deleted = records.splice(indexOfRecord, 1);
       if (deleted) {
         res.json({
-          id: req.params.id,
-          message: 'red-flag record has been deleted',
-          deleted,
+          status: 200,
+          data: [
+            {
+              id: req.params.id,
+              message: 'red-flag record has been deleted',
+            },
+          ],
         });
       }
     } else {
