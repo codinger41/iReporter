@@ -59,7 +59,7 @@ footer {
   text-align: center;
   color: aliceblue;
   font-family: 'OperatorMono';
-  font-size: 5vw;
+  font-size: 4vw;
 }
 
 * {
@@ -174,7 +174,7 @@ footer {
   background-color:#ffffff;
   text-align: center;
   width: 400px;
-  height: 440px;
+  height: 400px;
   justify-content: center;
   border-radius: 50px
 }
@@ -220,7 +220,7 @@ input {
   text-align: center;
   color: aliceblue;
   font-family: 'OperatorMono';
-  font-size: 4vw;
+  font-size: 3vw;
 }
 
 .footer {
