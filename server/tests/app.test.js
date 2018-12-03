@@ -245,7 +245,7 @@ describe('Delete api/v1/red-flags/:id/', () => {
 });
 
 describe('Delete api/v1/red-flags/:id/', () => {
-  it('should delete a record by id if it doesn\'t exist', (done) => {
+  it('should not delete a record by id if it doesn\'t exist, return error', (done) => {
     chai.request(app)
       .delete('/api/v1/red-flags/1/')
       .end((err, res) => {

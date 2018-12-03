@@ -190,7 +190,7 @@ export default class RecordsController {
    */
 
   static deleteARecord(req, res) {
-    // make an array containing all the ids of each record and pick the indecx from there.
+    // make an array containing all the ids of each record and pick the index from there.
     const indexOfRecord = records.map(record => record.id).indexOf(Number(req.params.id));
     if (indexOfRecord >= 0) {
       const deleted = records.splice(indexOfRecord, 1);
