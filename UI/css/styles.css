@@ -59,7 +59,7 @@ footer {
   text-align: center;
   color: aliceblue;
   font-family: 'OperatorMono';
-  font-size: 20px
+  font-size: 5vw;
 }
 
 * {
@@ -219,7 +219,7 @@ input {
   text-align: center;
   color: aliceblue;
   font-family: 'OperatorMono';
-  font-size: 40px
+  font-size: 4vw;
 }
 
 .footer {
@@ -369,6 +369,22 @@ img {
   -webkit-border-radius: 20px;
   -moz-border-radius: 20px;
   border-radius: 20px;
+}
+
+.selects2 {
+  height: 29px;
+  width: 100px;
+  background-color: #053D48;
+  -webkit-border-radius: 20px;
+  border-radius: 20px;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.type {
+  color: white;
+  font-size: 14px
 }
 
 .select-status {
