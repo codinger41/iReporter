@@ -13,3 +13,16 @@ export const validateNewRecords = [
     .isLength({ min: 5 })
     .withMessage('Location Must be at least 10 chars long'),
 ];
+
+// validates /PATCH/red-flags/location
+export const validatePatchLocation = [
+  check('location')
+    .isLength({ min: 5 })
+    .withMessage('Location Must be at least 10 characters long'),
+];
+
+export const validatePatchComment = [
+  check('comment')
+    .isLength({ min: 5 })
+    .withMessage('Comment Must be at least 10 alphabetical characters long'),
+];

@@ -116,20 +116,21 @@ export default class RecordsController {
   static editRecordLocation(req, res) {
     const record = records.find(singleRecord => singleRecord.id === Number(req.params.id));
     if (record) {
-      const { location } = req.body;
-      if (!location) {
-        res.json({
-          status: 400,
-          error: 'Location is required.',
-        });
-      } else {
-        record.location = location;
+      // get all errors from express validator
+      const errors = validationResult(req).array().map(error => error.msg);
+      if (errors.length < 1) {
+        record.location = req.body.location;
         res.json({
           status: 200,
           data: [{
             id: record.id,
             message: 'Updated red-flag record\'s location',
           }],
+        });
+      } else {
+        res.json({
+          status: 400,
+          error: errors,
         });
       }
     } else {
