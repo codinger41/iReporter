@@ -176,6 +176,7 @@ footer {
   width: 400px;
   height: 440px;
   justify-content: center;
+  border-radius: 50px
 }
 
 input {
