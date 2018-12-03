@@ -1,6 +1,10 @@
 /* eslint-disable no-dupe-class-members */
+/* eslint-disable import/prefer-default-export */
+import ExpressValidator from 'express-validator/check';
 import faker from 'faker';
 import records from '../data/records';
+
+const { validationResult } = ExpressValidator;
 
 export default class RecordsController {
   /**
@@ -15,31 +19,30 @@ export default class RecordsController {
    * @returns {object} Class instance
    */
   static addRedFlagRecord(req, res) {
-    const { body } = req;
-    const {
-      location, comment,
-    } = body;
-    if (!location || !comment) {
-      res.json({
-        status: 400,
-        error: 'Please fill in the location and comment.',
-      });
-    } else {
-      // pick last record from records array, check it's id
-      // the last record's id + 1 is the new record's id
+    const redFlag = req.body;
+    // get all errors from express validator
+    const errors = validationResult(req).array().map(error => error.msg);
+    // pick last record from records array, check it's id
+    // the last record's id + 1 is the new record's id
+    if (errors.length < 1) {
       const lastRecord = records.reverse()[0];
-      body.createdBy = 1;
-      body.createdOn = faker.date.recent();
-      body.id = lastRecord.id + 1;
+      redFlag.createdBy = 1;
+      redFlag.createdOn = faker.date.recent();
+      redFlag.id = lastRecord.id + 1;
       records.push(req.body);
       res.json({
         status: 200,
         data: [
           {
-            id: body.id,
+            id: redFlag.id,
             message: 'Created red-flag record',
           },
         ],
+      });
+    } else {
+      res.json({
+        status: 400,
+        error: errors,
       });
     }
   }
