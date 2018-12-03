@@ -101,7 +101,6 @@ describe('POST api/v1/red-flags', () => {
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(400);
         expect(body).to.haveOwnProperty('error');
-        expect(body.error).to.be.equals('Please fill in the location and comment.');
         done();
       });
   });
@@ -131,7 +130,7 @@ describe('PATCH api/v1/red-flags/:id/location', () => {
 describe('PATCH api/v1/red-flags/:id/location', () => {
   it('should return an error if the record of that id is non-existent', (done) => {
     chai.request(app)
-      .patch('/api/v1/red-flags/non-existent-stuff/location')
+      .patch('/api/v1/red-flags/non-existent-id/location')
       .send({
         location: '543.3213, 423.242',
       })
@@ -142,7 +141,6 @@ describe('PATCH api/v1/red-flags/:id/location', () => {
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(404);
         expect(body).to.haveOwnProperty('error');
-        expect(body.error).to.equals('No record was found with the given id.');
         done();
       });
   });
@@ -162,7 +160,6 @@ describe('PATCH api/v1/red-flags/:id/location', () => {
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(400);
         expect(body).to.haveOwnProperty('error');
-        expect(body.error).to.be.equals('Location is required.');
         done();
       });
   });
@@ -212,7 +209,6 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
     chai.request(app)
       .patch('/api/v1/red-flags/1/comment')
       .send({
-        comment: undefined,
       })
       .end((err, res) => {
         if (err) done();
@@ -221,7 +217,6 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(400);
         expect(body).to.haveOwnProperty('error');
-        expect(body.error).to.be.equals('Comment is required.');
         done();
       });
   });

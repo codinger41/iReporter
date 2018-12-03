@@ -68,8 +68,8 @@ export default class RecordsController {
       });
     } else {
       res.json({
-        status: 404,
-        message: 'There are no red-flag records.',
+        status: 204,
+        data: [],
       });
     }
   }
@@ -156,14 +156,9 @@ export default class RecordsController {
   static editRecordComment(req, res) {
     const record = records.find(singleRecord => singleRecord.id === Number(req.params.id));
     if (record) {
-      const { comment } = req.body;
-      if (!comment) {
-        res.json({
-          status: 400,
-          error: 'Comment is required.',
-        });
-      } else {
-        record.comment = comment;
+      const errors = validationResult(req).array().map(error => error.msg);
+      if (errors.length < 1) {
+        record.comment = req.body.comment;
         res.json({
           status: 200,
           data: [
@@ -172,6 +167,11 @@ export default class RecordsController {
               message: 'Updated red-flag record\'s comment',
             },
           ],
+        });
+      } else {
+        res.json({
+          status: 400,
+          error: errors,
         });
       }
     } else {
