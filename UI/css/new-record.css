@@ -73,6 +73,8 @@ footer {
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 10px;
   background-color: #053D48;
+  z-index:4;
+  position: relative;
 }
 
 .main-nav {
@@ -149,17 +151,7 @@ footer {
   }
 }
 
-.login-box {
-  display: flex;
-  flex: 0 1 auto; 
-  flex-direction: column;
-  padding: 46px;
-  background-color:#ffffff;
-  text-align: center;
-  width: 400px;
-  height: 440px;
-  justify-content: center;
-}
+
 
 input {
   background-color: inherit;
@@ -169,6 +161,7 @@ input {
   padding: 8px;
   color: #111;
   height: 50px;
+  width: 300px
 }
 
 .btns {
@@ -202,7 +195,7 @@ input {
   text-align: center;
   color: aliceblue;
   font-family: 'OperatorMono';
-  font-size: 40px
+  font-size: 3vw;
 }
 
 .footer {
@@ -230,19 +223,15 @@ input {
   padding: 46px;
   background-color:#ffffff;
   text-align: center;
-  width: 500px;
-  height: 540px;
-  border-radius: 30px;
+  width: 400px;
+  height: 400px;
+  justify-content: center;
+  border-radius: 50px
 }
 
 
 /* Custom dropdown */
 .custom-dropdown {
-  position: relative;
-  display: inline-block;
-  vertical-align: middle;
-  background-color: inherit;
-  border-radius: 10px;
 }
 
 .custom-dropdown select {
@@ -251,13 +240,14 @@ input {
   border-radius: 10px;
   color: #111;
   height: 50px;
-  width: 400px;
+  width: 300px;
 }
 
 .file-upload {
 	position: relative;
   display: inline-block;
-  justify-content: center
+  justify-content: center;
+  width: 300px;
 }
 
 .file-upload-label {
@@ -272,7 +262,7 @@ input {
   border-radius: 6px;
   margin: 4px;
   height: 50px;
-  justify-content: center
+  justify-content: center;
 }
     
 .file-upload-input {
