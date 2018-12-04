@@ -487,11 +487,6 @@ select {
   z-index: 1;
 }
 
-.modal-content {
-  display: flex;
-  flex-direction: row;
-}
-
 .modal-img {
   height: 400px;
   width: 500px;
@@ -627,6 +622,10 @@ and (max-width : 320px) {
       -moz-border-radius: 20px;
       border-radius: 20px;
     }
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+    }
 }
 
 /* iPads (portrait and landscape) ----------- */
@@ -637,11 +636,15 @@ and (max-device-width : 1024px) {
     .selects {
       height: 29px;
       overflow: hidden;
-      width: 29vw;
+      width: 30vw;
       background-color: #053D48;
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
       border-radius: 20px;
+    }
+    .modal-content {
+      display: flex;
+      flex-direction: row;
     }
 }
 
@@ -654,11 +657,15 @@ and (orientation : landscape) {
     .selects {
       height: 29px;
       overflow: hidden;
-      width: 29vw;
+      width: 30vw;
       background-color: #053D48;
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
       border-radius: 20px;
+    }
+    .modal-content {
+      display: flex;
+      flex-direction: row;
     }
 }
 
@@ -671,11 +678,15 @@ and (orientation : portrait) {
     .selects {
       height: 29px;
       overflow: hidden;
-      width: 255px;
+      width: 30vw;
       background-color: #053D48;
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
       border-radius: 20px;
+    }
+  .modal-content {
+    display: flex;
+    flex-direction: row;
   }
 }
 
@@ -691,6 +702,10 @@ and (min-width : 1224px) {
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
       border-radius: 20px;
+    }
+    .modal-content {
+      display: flex;
+      flex-direction: row;
     }
 }
 
