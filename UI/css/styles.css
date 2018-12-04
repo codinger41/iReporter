@@ -372,17 +372,6 @@ img {
   top: 100px;
 }
 
-
-
-.selects2 {
-
-  background-color: #053D48;
-  -webkit-border-radius: 20px;
-  border-radius: 20px;
-  justify-content: center;
-  align-items: center;
-}
-
 .type {
   color: rgb(165, 0, 0);
   font-size: 14px;
@@ -405,7 +394,6 @@ select {
   height: 29px;
   width: 268px;
   color: aliceblue;
-  background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
 }
 
 .filter-button {
