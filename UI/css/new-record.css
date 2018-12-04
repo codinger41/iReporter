@@ -164,6 +164,17 @@ input {
   width: 300px
 }
 
+.locate-me {
+  background-color: inherit;
+  border: 1px solid #333;
+  border-radius: 6px;
+  margin: 4px;
+  padding: 8px;
+  color: #111;
+  height: 40px;
+  width: 300px
+}
+
 .btns {
   display: block;
   margin: 8px;
