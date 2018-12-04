@@ -74,7 +74,7 @@ footer {
   padding-bottom: 10px;
   background-color: #053D48;
   z-index:4;
-  position: relative;
+  position: rela;
   width: 100%;
 }
 
@@ -233,7 +233,6 @@ input {
   color: white;
   text-align: center;
   background-color: #053D48;
-  height: 5vw;
   align-items: center;
   justify-content: center;
 }
@@ -315,7 +314,17 @@ img {
 }
 
 .sm-icon {
-  color: aliceblue;
+  color: black;
+  cursor: pointer;
+  font-size: 20px
+}
+
+.sm-icon-edit {
+  color: #1C6663
+}
+
+.sm-icon-delete {
+  color: rgb(165, 0, 0);
 }
 
 .button-sm-edit {
@@ -338,8 +347,6 @@ img {
 }
 .buttons {
   align-self: center;
-  align-content: center;
-  align-items: center;
 }
 
 .buttons-2 {
@@ -368,19 +375,19 @@ img {
 
 
 .selects2 {
-  height: 29px;
-  width: 100px;
+
   background-color: #053D48;
   -webkit-border-radius: 20px;
   border-radius: 20px;
-  align-content: center;
   justify-content: center;
   align-items: center;
 }
 
 .type {
-  color: white;
-  font-size: 14px
+  color: rgb(165, 0, 0);
+  font-size: 14px;
+  font-family: Operatormono;
+  margin-left: 10px
 }
 
 .select-status {
@@ -525,7 +532,26 @@ select {
   margin-top: 10px
 }
 
+.stat-box {
+  background-color: #053D48;
+  width: 9vw;
+  height: 7.5vw;
+  border-color: aliceblue;
+  border: #ddd;
+  border-width: 5px;
+  display: flex;
+  flex-direction: column;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  grid-row-start: 1;
+}
 
+.row-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
+}
 
 .stat-number {
   font-size: 20px;
@@ -586,20 +612,6 @@ and (min-width : 321px) {
       -moz-border-radius: 20px;
       border-radius: 20px;
     }
-    .stat-box {
-      background-color: #053D48;
-      width: 9vw;
-      height: 7.5vw;
-      border-color: aliceblue;
-      border: #ddd;
-      border-width: 5px;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-      justify-content: center;
-      align-items: center;
-      grid-row-start: 1;
-    }
 }
 
 /* Smartphones (portrait) ----------- */
@@ -615,20 +627,6 @@ and (max-width : 320px) {
       -moz-border-radius: 20px;
       border-radius: 20px;
     }
-    .stat-box {
-      background-color: #053D48;
-      width: 9vw;
-      height: 7.5vw;
-      border-color: aliceblue;
-      border: #ddd;
-      border-width: 5px;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-      justify-content: center;
-      align-items: center;
-      grid-row-start: 1;
-    }
 }
 
 /* iPads (portrait and landscape) ----------- */
@@ -636,19 +634,14 @@ and (max-width : 320px) {
 and (min-device-width : 768px) 
 and (max-device-width : 1024px) {
     /* Styles */
-    .stat-box {
+    .selects {
+      height: 29px;
+      overflow: hidden;
+      width: 29vw;
       background-color: #053D48;
-      width: 9vw;
-      height: 7.5vw;
-      border-color: aliceblue;
-      border: #ddd;
-      border-width: 5px;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-      justify-content: center;
-      align-items: center;
-      grid-row-start: 1;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
     }
 }
 
@@ -658,19 +651,14 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) 
 and (orientation : landscape) {
     /* Styles */
-    .stat-box {
+    .selects {
+      height: 29px;
+      overflow: hidden;
+      width: 29vw;
       background-color: #053D48;
-      width: 9vw;
-      height: 7.5vw;
-      border-color: aliceblue;
-      border: #ddd;
-      border-width: 5px;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-      justify-content: center;
-      align-items: center;
-      grid-row-start: 1;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
     }
 }
 
@@ -680,39 +668,21 @@ and (min-device-width : 768px)
 and (max-device-width : 1024px) 
 and (orientation : portrait) {
     /* Styles */
-    .stat-box {
+    .selects {
+      height: 29px;
+      overflow: hidden;
+      width: 255px;
       background-color: #053D48;
-      width: 9vw;
-      height: 7.5vw;
-      border-color: aliceblue;
-      border: #ddd;
-      border-width: 5px;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-      justify-content: center;
-      align-items: center;
-      grid-row-start: 1;
-    }
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+  }
 }
 
 /* Desktops and laptops ----------- */
 @media only screen 
 and (min-width : 1224px) {
     /* Styles */
-    .stat-box {
-      background-color: #053D48;
-      width: 100px;
-      height: 70px;
-      border-color: aliceblue;
-      border: #ddd;
-      border-width: 5px;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-      justify-content: center;
-      align-items: center;  
-    }
     .selects {
       height: 29px;
       overflow: hidden;
@@ -728,19 +698,7 @@ and (min-width : 1224px) {
 @media only screen 
 and (min-width : 1824px) {
     /* Styles */
-    .stat-box {
-      background-color: #053D48;
-      width: 100px;
-      height: 70px;
-      border-color: aliceblue;
-      border: #ddd;
-      border-width: 5px;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-      justify-content: center;
-      align-items: center;  
-    }
+
 }
 
 /* iPhone 4 ----------- */
@@ -748,17 +706,4 @@ and (min-width : 1824px) {
 only screen and (-webkit-min-device-pixel-ratio : 1.5),
 only screen and (min-device-pixel-ratio : 1.5) {
     /* Styles */
-    .stat-box {
-      background-color: #053D48;
-      width: 100px;
-      height: 70px;
-      border-color: aliceblue;
-      border: #ddd;
-      border-width: 5px;
-      display: flex;
-      flex-direction: column;
-      align-content: center;
-      justify-content: center;
-      align-items: center;  
-    }
 }
