@@ -151,7 +151,21 @@ footer {
   }
 }
 
-
+textarea {
+    height: 50px;
+    width: 300px;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    background-color: #f8f8f8;
+    background-color: inherit;
+  border: 1px solid #333;
+  border-radius: 6px;
+  margin: 4px;
+  padding: 8px;
+  color: #111;
+}
 
 input {
   background-color: inherit;
