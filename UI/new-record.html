@@ -37,28 +37,25 @@
         <h1 class="welcome"> Add a new record</h1>
       </div>
       <form class="new-record">
-        <h2> Fill in all fields. </h2>
-        <span class="custom-dropdown big">
-          <select>    
+        <span class="custom-dropdown">
+          <select>
             <option>Select record type</option>
             <option>Red flag</option>  
             <option>Intervention</option>
           </select>
         </span>
-        <input 
+        <textarea
           type="text"
           placeholder="Comment"
           required
-        />
+        ></textarea>
+        <p>upload proof (optional)</p>
         <input 
-          type="text"
-          placeholder="Location"
-          required
-        />
-        <div class="file-upload">
-          <label for="upload" class="file-upload-label">Upload proof (optional)</label>
-          <input id="upload" class="file-upload-input" type="file" name="file-upload">
-        </div>
+          id="upload" 
+          type="file" 
+          name="file-upload"
+        >
+        <button class="locate-me">locate me</button>
         <div class="btns">
           <button
             class="auth-button"

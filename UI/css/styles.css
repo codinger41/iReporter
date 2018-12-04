@@ -59,7 +59,7 @@ footer {
   text-align: center;
   color: aliceblue;
   font-family: 'OperatorMono';
-  font-size: 20px
+  font-size: 4vw;
 }
 
 * {
@@ -73,6 +73,9 @@ footer {
   border: 1px solid rgba(0, 0, 0, 0.2);
   padding-bottom: 10px;
   background-color: #053D48;
+  z-index:4;
+  position: relative;
+  width: 100%;
 }
 
 .main-nav {
@@ -174,8 +177,9 @@ footer {
   background-color:#ffffff;
   text-align: center;
   width: 400px;
-  height: 440px;
+  height: 400px;
   justify-content: center;
+  border-radius: 50px
 }
 
 input {
@@ -219,7 +223,7 @@ input {
   text-align: center;
   color: aliceblue;
   font-family: 'OperatorMono';
-  font-size: 40px
+  font-size: 3vw;
 }
 
 .footer {
@@ -229,7 +233,6 @@ input {
   color: white;
   text-align: center;
   background-color: #053D48;
-  height: 40px;
   align-items: center;
   justify-content: center;
 }
@@ -311,7 +314,17 @@ img {
 }
 
 .sm-icon {
-  color: aliceblue;
+  color: black;
+  cursor: pointer;
+  font-size: 20px
+}
+
+.sm-icon-edit {
+  color: #1C6663
+}
+
+.sm-icon-delete {
+  color: rgb(165, 0, 0);
 }
 
 .button-sm-edit {
@@ -334,8 +347,6 @@ img {
 }
 .buttons {
   align-self: center;
-  align-content: center;
-  align-items: center;
 }
 
 .buttons-2 {
@@ -361,14 +372,11 @@ img {
   top: 100px;
 }
 
-.selects {
-  height: 29px;
-  overflow: hidden;
-  width: 255px;
-  background-color: #053D48;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  border-radius: 20px;
+.type {
+  color: rgb(165, 0, 0);
+  font-size: 14px;
+  font-family: Operatormono;
+  margin-left: 10px
 }
 
 .select-status {
@@ -386,7 +394,6 @@ select {
   height: 29px;
   width: 268px;
   color: aliceblue;
-  background: url(http://i62.tinypic.com/2e3ybe1.jpg) no-repeat right center;
 }
 
 .filter-button {
@@ -468,11 +475,6 @@ select {
   z-index: 1;
 }
 
-.modal-content {
-  display: flex;
-  flex-direction: row;
-}
-
 .modal-img {
   height: 400px;
   width: 500px;
@@ -501,24 +503,22 @@ select {
 }
 
 .row-plain {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between
+  display: inline-grid;
+  grid-row-gap: 50px;
 }
 
 .user-record-stats {
-  background-color: #ffffff;
-  width: 302px;
+  width: 150px;
   height: 70px;
-  position: absolute;
   top: 80px;
   left: 5px;
+  margin-top: 10px
 }
 
 .stat-box {
   background-color: #053D48;
-  width: 100px;
-  height: 70px;
+  width: 9vw;
+  height: 7.5vw;
   border-color: aliceblue;
   border: #ddd;
   border-width: 5px;
@@ -527,6 +527,13 @@ select {
   align-content: center;
   justify-content: center;
   align-items: center;
+  grid-row-start: 1;
+}
+
+.row-icons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between
 }
 
 .stat-number {
@@ -558,4 +565,148 @@ select {
   padding: 8px;
   color: #111;
   height: 50px;
+}
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 320px) 
+and (max-device-width : 480px) {
+    /* Styles */
+    .selects {
+      height: 29px;
+      overflow: hidden;
+      width: 29vw;
+      background-color: #053D48;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+    }
+}
+
+/* Smartphones (landscape) ----------- */
+@media only screen 
+and (min-width : 321px) {
+    /* Styles */
+    .selects {
+      height: 29px;
+      overflow: hidden;
+      width: 25vw;
+      background-color: #053D48;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+    }
+}
+
+/* Smartphones (portrait) ----------- */
+@media only screen 
+and (max-width : 320px) {
+    /* Styles */
+    .selects {
+      height: 29px;
+      overflow: hidden;
+      width: 30vw;
+      background-color: #053D48;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+    }
+    .modal-content {
+      display: flex;
+      flex-direction: column;
+    }
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) {
+    /* Styles */
+    .selects {
+      height: 29px;
+      overflow: hidden;
+      width: 30vw;
+      background-color: #053D48;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+    }
+    .modal-content {
+      display: flex;
+      flex-direction: row;
+    }
+}
+
+/* iPads (landscape) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : landscape) {
+    /* Styles */
+    .selects {
+      height: 29px;
+      overflow: hidden;
+      width: 30vw;
+      background-color: #053D48;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+    }
+    .modal-content {
+      display: flex;
+      flex-direction: row;
+    }
+}
+
+/* iPads (portrait) ----------- */
+@media only screen 
+and (min-device-width : 768px) 
+and (max-device-width : 1024px) 
+and (orientation : portrait) {
+    /* Styles */
+    .selects {
+      height: 29px;
+      overflow: hidden;
+      width: 30vw;
+      background-color: #053D48;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+    }
+  .modal-content {
+    display: flex;
+    flex-direction: row;
+  }
+}
+
+/* Desktops and laptops ----------- */
+@media only screen 
+and (min-width : 1224px) {
+    /* Styles */
+    .selects {
+      height: 29px;
+      overflow: hidden;
+      width: 255px;
+      background-color: #053D48;
+      -webkit-border-radius: 20px;
+      -moz-border-radius: 20px;
+      border-radius: 20px;
+    }
+    .modal-content {
+      display: flex;
+      flex-direction: row;
+    }
+}
+
+/* Large screens ----------- */
+@media only screen 
+and (min-width : 1824px) {
+    /* Styles */
+
+}
+
+/* iPhone 4 ----------- */
+@media
+only screen and (-webkit-min-device-pixel-ratio : 1.5),
+only screen and (min-device-pixel-ratio : 1.5) {
+    /* Styles */
 }
