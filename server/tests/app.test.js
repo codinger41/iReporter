@@ -284,3 +284,74 @@ describe('POST api/v1/auth/signup', () => {
       });
   });
 });
+
+describe('POST api/v1/auth/signup', () => {
+  it('should return an error if signup inputs are invalid', (done) => {
+    chai.request(app)
+      .patch('/api/v1/auth/signup')
+      .send({
+        firstname: faker.name.firstName(),
+        lastname: faker.name.lastName(),
+        othernames: faker.name.findName(),
+        email: faker.internet.email(),
+        phoneNumber: faker.phone.phoneNumber(),
+        username: faker.internet.userName(),
+        registered: faker.date.recent(),
+        isAdmin: false,
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('string');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/login', () => {
+  it('should successfully log a user in if login inputs are valid', (done) => {
+    chai.request(app)
+      .patch('/api/v1/auth/login')
+      .send({
+        username: faker.internet.userName(),
+        password: faker.internet.password(),
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(200);
+        expect(body.data).to.haveOwnProperty('token');
+        expect(body.data).to.haveOwnProperty('user');
+        expect(body.data.user).to.be.an('object');
+        expect(body.data.token).to.be.a('string');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/login', () => {
+  it('should return an error if login inputs are invalid', (done) => {
+    chai.request(app)
+      .patch('/api/v1/auth/login')
+      .send({
+        username: faker.internet.userName(),
+        password: faker.internet.password(),
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('string');
+        done();
+      });
+  });
+});
