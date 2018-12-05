@@ -66,7 +66,7 @@ describe('POST api/v1/red-flags', () => {
       .post('/api/v1/red-flags/')
       .send({
         location: `${faker.address.longitude()}, ${faker.address.latitude()}`,
-        comment: `${faker.random.words()}`,
+        comment: `${faker.random.words()} ${faker.random.words()}`,
         type: 'red-flag',
       })
       .end((err, res) => {
@@ -251,6 +251,35 @@ describe('Delete api/v1/red-flags/:id/', () => {
         expect(body.status).to.be.equals(404);
         expect(body).to.haveOwnProperty('error');
         expect(body.error).to.equals('No record was found with the given id.');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/signup', () => {
+  it('should successfully create a user account if inputs are valid', (done) => {
+    chai.request(app)
+      .patch('/api/v1/auth/signup')
+      .send({
+        firstname: faker.name.firstName(),
+        lastname: faker.name.lastName(),
+        othernames: faker.name.findName(),
+        email: faker.internet.email(),
+        phoneNumber: faker.phone.phoneNumber(),
+        username: faker.internet.userName(),
+        registered: faker.date.recent(),
+        isAdmin: false,
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(200);
+        expect(body.data).to.haveOwnProperty('token');
+        expect(body.data).to.haveOwnProperty('user');
+        expect(body.data.user).to.be.an('object');
+        expect(body.data.token).to.be.a('string');
         done();
       });
   });
