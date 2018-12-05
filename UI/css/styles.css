@@ -174,12 +174,12 @@ footer {
   flex: 0 1 auto; 
   flex-direction: column;
   padding: 46px;
-  background-color:#ffffff;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 20px;
   text-align: center;
-  width: 400px;
+  width: 350px;
   height: 400px;
-  justify-content: center;
-  border-radius: 50px
 }
 
 input {
@@ -235,6 +235,7 @@ input {
   background-color: #053D48;
   align-items: center;
   justify-content: center;
+  position: fixed
 }
 
 .footer-text {
@@ -394,6 +395,7 @@ select {
   height: 29px;
   width: 268px;
   color: aliceblue;
+  background: url('../images/drop.png') no-repeat right center;
 }
 
 .filter-button {
@@ -545,18 +547,6 @@ select {
   color: aliceblue
 }
 
-.new-record {
-  display: flex;
-  flex: 0 1 auto; 
-  flex-direction: column;
-  padding: 46px;
-  background-color:#ffffff;
-  text-align: center;
-  width: 500px;
-  height: 540px;
-  border-radius: 30px;
-}
-
 .dropdown {
   background-color: inherit;
   border: 1px solid #333;
@@ -614,6 +604,8 @@ and (max-width : 320px) {
       display: flex;
       flex-direction: column;
     }
+
+    
 }
 
 /* iPads (portrait and landscape) ----------- */
