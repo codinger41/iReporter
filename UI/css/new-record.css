@@ -233,6 +233,7 @@ input {
   background-color: #053D48;
   align-items: center;
   justify-content: center;
+  position: fixed
 }
 
 .footer-text {
@@ -246,13 +247,13 @@ input {
   flex: 0 1 auto; 
   flex-direction: column;
   padding: 46px;
-  background-color:#ffffff;
+  background-color: #eee;
+  border: 1px solid #ddd;
+  border-radius: 20px;
   text-align: center;
-  width: 370px;
+  width: 350px;
   height: 400px;
   align-items: center;
-  justify-content: center;
-  border-radius: 50px
 }
 
 

@@ -380,13 +380,6 @@ img {
   margin-left: 10px
 }
 
-.select-status {
-  position: absolute;
-  top: 450px;
-  right: 0;
-  display: flex;
-  flex-direction: row;
-}
 
 select {
   background: transparent;
@@ -579,11 +572,18 @@ and (min-width : 321px) {
     .selects {
       height: 29px;
       overflow: hidden;
-      width: 25vw;
+      width: 32vw;
       background-color: #053D48;
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
       border-radius: 20px;
+    }
+    .select-status {
+      position: absolute;
+      top: 1010px;
+      right: 0;
+      display: flex;
+      flex-direction: row;
     }
 }
 
@@ -591,10 +591,10 @@ and (min-width : 321px) {
 @media only screen 
 and (max-width : 320px) {
     /* Styles */
-    .selects {
+    .selects-modal {
       height: 29px;
       overflow: hidden;
-      width: 30vw;
+      width: 41vw;
       background-color: #053D48;
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
@@ -604,8 +604,13 @@ and (max-width : 320px) {
       display: flex;
       flex-direction: column;
     }
-
-    
+    .select-status {
+      position: absolute;
+      top: 1010px;
+      right: 0;
+      display: flex;
+      flex-direction: row;
+    }
 }
 
 /* iPads (portrait and landscape) ----------- */
@@ -623,6 +628,13 @@ and (max-device-width : 1024px) {
       border-radius: 20px;
     }
     .modal-content {
+      display: flex;
+      flex-direction: row;
+    }
+    .select-status {
+      position: absolute;
+      top: 450px;
+      right: 0;
       display: flex;
       flex-direction: row;
     }
@@ -647,6 +659,13 @@ and (orientation : landscape) {
       display: flex;
       flex-direction: row;
     }
+    .select-status {
+      position: absolute;
+      top: 450px;
+      right: 0;
+      display: flex;
+      flex-direction: row;
+    }
 }
 
 /* iPads (portrait) ----------- */
@@ -665,6 +684,13 @@ and (orientation : portrait) {
       border-radius: 20px;
     }
   .modal-content {
+    display: flex;
+    flex-direction: row;
+  }
+  .select-status {
+    position: absolute;
+    top: 450px;
+    right: 0;
     display: flex;
     flex-direction: row;
   }
@@ -687,13 +713,26 @@ and (min-width : 1224px) {
       display: flex;
       flex-direction: row;
     }
+    .select-status {
+      position: absolute;
+      top: 460px;
+      right: 0;
+      display: flex;
+      flex-direction: row;
+    }
 }
 
 /* Large screens ----------- */
 @media only screen 
 and (min-width : 1824px) {
     /* Styles */
-
+    .select-status {
+      position: absolute;
+      top: 450px;
+      right: 0;
+      display: flex;
+      flex-direction: row;
+    }
 }
 
 /* iPhone 4 ----------- */
