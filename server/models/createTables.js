@@ -1,9 +1,11 @@
 import { Client } from 'pg';
+import dotenv from 'dotenv';
 import { recordTable, userTable } from './tables';
 
+dotenv.config();
 
 const client = new Client({
-  connectionString: 'postgres://kgwczdbs:fYHZhGvcrB-b-NXZiehQx5-u93DFFBwH@pellefant.db.elephantsql.com:5432/kgwczdbs',
+  connectionString: process.env.DATABASE_URL,
 });
 
 const creeateTables = async () => {
