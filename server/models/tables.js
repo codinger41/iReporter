@@ -1,26 +1,27 @@
 export const userTable = `
-  CREATE TABLE IF NOT EXISTS user(
-    id int NOT NULL AUTO_INCREMENT,
-    username varchar(255) NOT NULL,
-    firstname varchar(255) NOT NULL,
-    lastname varchar(255) NOT NULL,
-    othernames varchar(255) NOT NULL,
-    email varchar(30) NOT NULL,
-    password varchat(25) NOT NULL,
-    phoneNumber varchar(255),
-    registered DATE,
-    isAdmin BOOLEAN DEFAULT False,
+  CREATE TABLE IF NOT EXISTS Users (
+    id int,
+    firstname varchar(255),
+    lastname varchar(255),
+    othernames varchar(255),
+    username varchar(255),
+    phoneNumber varchar(15),
+    password varchar(30),
+    email varchar(30),
+    registered date,
+    isAdmin boolean
   );
 `;
 
 export const recordTable = `
-  id int NOT NULL AUTO_INCREMENT,
-  createdOn DATE, 
-  createdBy int NOT NULL,
-  type TEXT NOT NULL,
-  status TEXT NOT NULL,
-  Images varray,
-  Videos varray,
-  comment TEXT NOT NULL,
-  location TEXT,
+  CREATE TABLE IF NOT EXISTS Records (
+    id int,
+    createdOn date,
+    createdby int,
+    location varchar(20),
+    status varchar(50),
+    Images text[][],
+    Videos text[][],
+    comment varchar(2000)
+  )
 `;

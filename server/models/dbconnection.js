@@ -1,5 +1,6 @@
 import { Pool } from 'pg';
 import { userTable, recordTable } from './tables';
+
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });

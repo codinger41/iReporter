@@ -7,7 +7,8 @@
     "start": "babel-node --presets env,stage-2 server/app.js",
     "test": "mocha server/tests/app.test.js --require babel-register --exit",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov yarn test",
-    "coverage": "nyc report --reporter=text-lcov | coveralls"
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "create-tables": "babel-node server/models/createTables"
   },
   "repository": {
     "type": "git",
