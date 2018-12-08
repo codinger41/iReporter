@@ -5,6 +5,7 @@ dotenv.config();
 
 const client = new Client({
   connectionString: process.env.DATABASE_URL,
+  database: 'ireporter',
 });
 
 const creeateTables = async () => {
