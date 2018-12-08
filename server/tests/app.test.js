@@ -3,6 +3,7 @@ import 'babel-polyfill';
 import chai from 'chai';
 import faker from 'faker';
 import chaiHttp from 'chai-http';
+import errorHandler from '../helpers/errorhandler';
 import app from '../app';
 
 const { expect } = chai;
@@ -306,6 +307,34 @@ describe('POST api/v1/auth/signup', () => {
   });
 });
 
+describe('POST api/v1/auth/signup', () => {
+  it('should return an error if username or email already exists', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send({
+        username: 'leksyib',
+        email: faker.internet.email(),
+        firstname: faker.name.firstName(),
+        lastname: faker.name.lastName(),
+        registered: faker.date.recent(),
+        phonenumber: '21334314543',
+        password: '3qwdvf34wedscerscd',
+        isadmin: false,
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('string');
+        expect(body.error).to.equals(errorHandler[0].message);
+        done();
+      });
+  });
+});
+
 describe('POST api/v1/auth/login', () => {
   it('should successfully log a user in if login inputs are valid', (done) => {
     chai.request(app)
@@ -333,6 +362,45 @@ describe('POST api/v1/auth/login', () => {
       .send({
         username: faker.internet.userName(),
         password: faker.internet.password(),
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('string');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/login', () => {
+  it('should return an error if login inputs are empty', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send()
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('array');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/login', () => {
+  it('should return an error if login password is wrong', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        username: user.username,
+        password: '1fiuvjnmwcijnmk3wdc0',
       })
       .end((err, res) => {
         if (err) done();
