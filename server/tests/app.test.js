@@ -458,6 +458,7 @@ describe('Delete api/v1/red-flags/:id/', () => {
   it('should delete a record by id if it exists', (done) => {
     chai.request(app)
       .delete('/api/v1/red-flags/1/')
+      .set({ 'x-access-token': token })
       .end((err, res) => {
         if (err) done();
         const { body } = res;
@@ -475,6 +476,7 @@ describe('Delete api/v1/red-flags/:id/', () => {
   it('should not delete a record by id if it doesn\'t exist, return error', (done) => {
     chai.request(app)
       .delete('/api/v1/red-flags/1/')
+      .set({ 'x-access-token': token })
       .end((err, res) => {
         if (err) done();
         const { body } = res;

@@ -2,7 +2,6 @@
 /* eslint-disable import/prefer-default-export */
 import ExpressValidator from 'express-validator/check';
 import Records from '../models/recordsModel';
-import records from '../data/records';
 
 const { validationResult } = ExpressValidator;
 
@@ -202,26 +201,29 @@ export default class redFlagRecordsController {
    * @returns {object} Class instance
    */
 
-  static deleteARecord(req, res) {
-    // make an array containing all the ids of each record and pick the index from there.
-    const indexOfRecord = records.map(record => record.id).indexOf(Number(req.params.id));
-    if (indexOfRecord >= 0) {
-      const deleted = records.splice(indexOfRecord, 1);
-      if (deleted) {
+  static async deleteARecord(req, res) {
+    const errors = validationResult(req).array().map(error => error.msg);
+    if (errors.length < 1) {
+      const record = await Records.findOneById(req.params.id);
+      if (record.rowCount === 1) {
+        const deleteRecord = await Records.deleteById(req.params.id);
         res.json({
           status: 200,
-          data: [
-            {
-              id: req.params.id,
-              message: 'red-flag record has been deleted',
-            },
-          ],
+          data: [{
+            id: deleteRecord.rows[0].id,
+            message: 'Red-flag record has been deleted.',
+          }],
+        });
+      } else {
+        res.json({
+          status: 404,
+          error: 'No record was found with the given id.',
         });
       }
     } else {
       res.json({
-        status: 404,
-        error: 'No record was found with the given id.',
+        status: 400,
+        error: errors,
       });
     }
   }

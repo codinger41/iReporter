@@ -72,4 +72,18 @@ export default class RecordModel {
       return error;
     }
   }
+
+  static async deleteById(id) {
+    try {
+      const query = `
+        DELETE FROM records
+        WHERE id = ${Number(id)}
+        RETURNING id
+      `;
+      const res = await pool.query(query);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
 }
