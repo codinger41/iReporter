@@ -4,10 +4,10 @@ export const userTable = `
     firstname varchar(255),
     lastname varchar(255),
     othernames varchar(255),
-    username varchar(255),
+    username varchar(255) UNIQUE,
     phonenumber varchar(15),
     password varchar(30),
-    email varchar(30),
+    email varchar(50) UNIQUE,
     registered varchar(30),
     isadmin boolean
   );
