@@ -3,4 +3,5 @@ import dotenv from 'dotenv';
 
 dotenv.config();
 
-export const generateToken = (payload) => jwt.sign(payload, process.env.JWT_SECRET);
+// eslint-disable-next-line import/prefer-default-export
+export const generateToken = payload => jwt.sign(payload, process.env.JWT_SECRET);

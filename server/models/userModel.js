@@ -36,4 +36,14 @@ export default class UserModel {
       return error;
     }
   }
+
+  static async findOneByUsername(username) {
+    try {
+      const query = `SELECT * FROM users WHERE username = '${username}' `;
+      const res = await pool.query(query);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
 }

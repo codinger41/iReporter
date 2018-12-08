@@ -6,7 +6,7 @@ export const userTable = `
     othernames varchar(255),
     username varchar(255) UNIQUE,
     phonenumber varchar(15),
-    password varchar(30),
+    password varchar(90),
     email varchar(50) UNIQUE,
     registered varchar(30),
     isadmin boolean

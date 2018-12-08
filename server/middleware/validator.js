@@ -63,3 +63,15 @@ export const validateSignup = [
     .isLength({ min: 10 })
     .withMessage('Phone number must be at least 10 characters long'),
 ];
+
+export const validateLogin = [
+  check('username')
+    .isString().withMessage('Username must be alphabetical characters.')
+    .isLength({ min: 4 })
+    .withMessage('Username must be at least 5 characters long'),
+
+  check('password')
+    .isString().withMessage('Password must be alphanumeric characters.')
+    .isLength({ min: 6 })
+    .withMessage('Password must be at least 6 characters long'),
+];

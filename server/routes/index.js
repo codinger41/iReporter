@@ -2,7 +2,7 @@ import recordsController from '../controllers/recordsController';
 import UserController from '../controllers/userController';
 import {
   validateNewRecords, validatePatchComment,
-  validatePatchLocation, validateSignup,
+  validatePatchLocation, validateSignup, validateLogin,
 } from '../middleware/validator';
 
 const routes = (app) => {
@@ -14,6 +14,7 @@ const routes = (app) => {
   app.delete('/api/v1/red-flags/:id/', recordsController.deleteARecord);
   // auth routes
   app.post('/api/v1/auth/signup', validateSignup, UserController.signUp);
+  app.post('/api/v1/auth/login', validateLogin, UserController.signIn);
 };
 
 export default routes;
