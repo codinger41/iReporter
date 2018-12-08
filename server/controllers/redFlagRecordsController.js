@@ -5,7 +5,7 @@ import Records from '../models/recordsModel';
 
 const { validationResult } = ExpressValidator;
 
-export default class redFlagRecordsController {
+export default class RedflagController {
   /**
    * @description - Add a new red-flag record
    * @static
@@ -202,28 +202,20 @@ export default class redFlagRecordsController {
    */
 
   static async deleteARecord(req, res) {
-    const errors = validationResult(req).array().map(error => error.msg);
-    if (errors.length < 1) {
-      const record = await Records.findOneById(req.params.id);
-      if (record.rowCount === 1) {
-        const deleteRecord = await Records.deleteById(req.params.id);
-        res.json({
-          status: 200,
-          data: [{
-            id: deleteRecord.rows[0].id,
-            message: 'Red-flag record has been deleted.',
-          }],
-        });
-      } else {
-        res.json({
-          status: 404,
-          error: 'No record was found with the given id.',
-        });
-      }
+    const record = await Records.findOneById(req.params.id);
+    if (record.rowCount === 1) {
+      const deleteRecord = await Records.deleteById(req.params.id);
+      res.json({
+        status: 200,
+        data: [{
+          id: deleteRecord.rows[0].id,
+          message: 'Red-flag record has been deleted.',
+        }],
+      });
     } else {
       res.json({
-        status: 400,
-        error: errors,
+        status: 404,
+        error: 'No record was found with the given id.',
       });
     }
   }
