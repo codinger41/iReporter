@@ -68,7 +68,7 @@ export const validateLogin = [
   check('username')
     .isString().withMessage('Username must be alphabetical characters.')
     .isLength({ min: 4, max: 20 })
-    .withMessage('Username must be at least 5 characters long'),
+    .withMessage('Username must be at least 5 characters long and not more than 20'),
 
   check('password')
     .isString().withMessage('Password must be alphanumeric characters.')
