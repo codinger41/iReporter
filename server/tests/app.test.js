@@ -338,8 +338,9 @@ describe('PATCH api/v1/red-flags/:id/location', () => {
   it('should edit the location value of a record if it exists', (done) => {
     chai.request(app)
       .patch('/api/v1/red-flags/1/location')
+      .set({ 'x-access-token': token })
       .send({
-        location: '543.3213, 423.242',
+        location: '543.3213,423.242',
       })
       .end((err, res) => {
         if (err) done();
@@ -358,7 +359,8 @@ describe('PATCH api/v1/red-flags/:id/location', () => {
 describe('PATCH api/v1/red-flags/:id/location', () => {
   it('should return an error if the record of that id is non-existent', (done) => {
     chai.request(app)
-      .patch('/api/v1/red-flags/non-existent-id/location')
+      .patch('/api/v1/red-flags/3223432345432432/location')
+      .set({ 'x-access-token': token })
       .send({
         location: '543.3213, 423.242',
       })
@@ -378,9 +380,8 @@ describe('PATCH api/v1/red-flags/:id/location', () => {
   it('should return an error if the location field is empty', (done) => {
     chai.request(app)
       .patch('/api/v1/red-flags/1/location')
-      .send({
-        location: undefined,
-      })
+      .set({ 'x-access-token': token })
+      .send()
       .end((err, res) => {
         if (err) done();
         const { body } = res;

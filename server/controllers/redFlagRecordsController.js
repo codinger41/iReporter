@@ -115,30 +115,34 @@ export default class redFlagRecordsController {
    * @returns {object} Class instance
    */
 
-  static editRecordLocation(req, res) {
-    const record = records.find(singleRecord => singleRecord.id === Number(req.params.id));
-    if (record) {
-      // get all errors from express validator
-      const errors = validationResult(req).array().map(error => error.msg);
-      if (errors.length < 1) {
-        record.location = req.body.location;
+  static async editRecordLocation(req, res) {
+    const errors = validationResult(req).array().map(error => error.msg);
+    if (errors.length < 1) {
+      const record = await Records.findOneById(req.params.id);
+      if (record.rowCount === 1) {
+        const payload = {
+          id: req.params.id,
+          fieldName: 'location',
+          data: req.body.location,
+        };
+        const updateRecord = await Records.update(payload);
         res.json({
           status: 200,
           data: [{
-            id: record.id,
+            id: updateRecord.rows[0].id,
             message: 'Updated red-flag record\'s location',
           }],
         });
       } else {
         res.json({
-          status: 400,
-          error: errors,
+          status: 404,
+          error: 'No record was found with the given id.',
         });
       }
     } else {
       res.json({
-        status: 404,
-        error: 'No record was found with the given id.',
+        status: 400,
+        error: errors,
       });
     }
   }

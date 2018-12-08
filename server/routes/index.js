@@ -10,7 +10,7 @@ const routes = (app) => {
   app.post('/api/v1/red-flags', AuthRequired, validateNewRecords, redFlagRecordsController.addRedFlagRecord);
   app.get('/api/v1/red-flags', redFlagRecordsController.getAllRedFlagRecords);
   app.get('/api/v1/red-flags/:id', redFlagRecordsController.getSpecificRedFlagRecord);
-  app.patch('/api/v1/red-flags/:id/location', validatePatchLocation, redFlagRecordsController.editRecordLocation);
+  app.patch('/api/v1/red-flags/:id/location', AuthRequired, validatePatchLocation, redFlagRecordsController.editRecordLocation);
   app.patch('/api/v1/red-flags/:id/comment', validatePatchComment, redFlagRecordsController.editRecordComment);
   app.delete('/api/v1/red-flags/:id/', redFlagRecordsController.deleteARecord);
   // auth routes

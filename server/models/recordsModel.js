@@ -56,4 +56,20 @@ export default class RecordModel {
       return error;
     }
   }
+
+  static async update(payload) {
+    try {
+      const { fieldName, data, id } = payload;
+      const query = `
+        UPDATE records
+        SET ${fieldName} = '${data}'
+        WHERE id = ${Number(id)}
+        RETURNING id
+      `;
+      const res = await pool.query(query);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
 }
