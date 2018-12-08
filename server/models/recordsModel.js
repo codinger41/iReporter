@@ -37,13 +37,13 @@ export default class RecordModel {
     }
   }
 
-  // static async findOneByUsername(username) {
-  //   try {
-  //     const query = `SELECT * FROM users WHERE username = '${username}' `;
-  //     const res = await pool.query(query);
-  //     return res;
-  //   } catch (error) {
-  //     return error;
-  //   }
-  // }
+  static async findOneById(id) {
+    try {
+      const query = `SELECT * FROM records WHERE id = ${id} `;
+      const res = await pool.query(query);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
 }

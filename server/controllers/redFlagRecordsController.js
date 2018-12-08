@@ -88,12 +88,12 @@ export default class redFlagRecordsController {
    * @returns {object} Class instance
    */
 
-  static getSpecificRedFlagRecord(req, res) {
-    const record = records.find(singleRecord => singleRecord.id === Number(req.params.id));
-    if (record) {
+  static async getSpecificRedFlagRecord(req, res) {
+    const record = await Records.findOneById(Number(req.params.id));
+    if (record.rowCount === 1) {
       res.json({
         status: 200,
-        data: [record],
+        data: [record.rows[0]],
       });
     } else {
       res.json({
