@@ -43,7 +43,7 @@ export default class UserController {
   static async signIn(req, res) {
     const errors = validationResult(req).array().map(error => error.msg);
     if (errors.length < 1) {
-      const { username } = req.body;
+      const { username, password } = req.body;
       const user = await User.findOneByUsername(username);
       if (!(user.rowCount === 1)) {
         // 'user' is an error here.
@@ -53,16 +53,24 @@ export default class UserController {
           error,
         });
       } else {
-        const token = generateToken(user.rows[0]);
-        res.json({
-          status: 200,
-          data: [
-            {
-              token,
-              user: user.rows[0],
-            },
-          ],
-        });
+        const passwordisValid = bcrypt.compareSync(password, user.rows[0].password);
+        if (passwordisValid) {
+          const token = generateToken(user.rows[0]);
+          res.json({
+            status: 200,
+            data: [
+              {
+                token,
+                user: user.rows[0],
+              },
+            ],
+          });
+        } else {
+          res.json({
+            status: 400,
+            error: 'Password is invalid.',
+          });
+        }
       }
     } else {
       res.json({
