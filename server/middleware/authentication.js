@@ -11,7 +11,10 @@ const AuthenticationRequired = (req, res, next) => {
     // verifies secret and checks exp
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
-        return res.json({ success: false, message: 'Please Login First.' });
+        return res.json({
+          status: 403,
+          error: 'Invalid token, you have to login first',
+        });
       }
       // if everything is good, save to request for use in other routes
       req.decoded = decoded;
