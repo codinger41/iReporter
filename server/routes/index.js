@@ -1,6 +1,9 @@
 import recordsController from '../controllers/recordsController';
 import UserController from '../controllers/userController';
-import { validateNewRecords, validatePatchComment, validatePatchLocation } from '../middleware/validator';
+import {
+  validateNewRecords, validatePatchComment,
+  validatePatchLocation, validateSignup,
+} from '../middleware/validator';
 
 const routes = (app) => {
   app.post('/api/v1/red-flags', validateNewRecords, recordsController.addRedFlagRecord);
@@ -9,8 +12,8 @@ const routes = (app) => {
   app.patch('/api/v1/red-flags/:id/location', validatePatchLocation, recordsController.editRecordLocation);
   app.patch('/api/v1/red-flags/:id/comment', validatePatchComment, recordsController.editRecordComment);
   app.delete('/api/v1/red-flags/:id/', recordsController.deleteARecord);
-
-  app.post('/api/v1/auth/signup', UserController.signUp);
+  // auth routes
+  app.post('/api/v1/auth/signup', validateSignup, UserController.signUp);
 };
 
 export default routes;
