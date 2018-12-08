@@ -9,8 +9,11 @@ before_script:
   - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64 > ./cc-test-reporter
   - chmod +x ./cc-test-reporter
   - ./cc-test-reporter before-build
+  - psql -c 'create database ireporter;' -U postgres
 script:
   - npm run test
+services :
+  - postgresql
 after_success:
   - npm run coveralls
   - npm run coverage
