@@ -398,6 +398,7 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
   it('edit the comment value of a record if it exists', (done) => {
     chai.request(app)
       .patch('/api/v1/red-flags/1/comment')
+      .set({ 'x-access-token': token })
       .send({
         comment: faker.random.words(),
       })
@@ -418,6 +419,7 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
   it('should return an error if the id is not existing', (done) => {
     chai.request(app)
       .patch('/api/v1/red-flags/non-existing-id/comment')
+      .set({ 'x-access-token': token })
       .send({
         comment: faker.random.words(),
       })
@@ -437,6 +439,7 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
   it('should return an error if the comment field is empty', (done) => {
     chai.request(app)
       .patch('/api/v1/red-flags/1/comment')
+      .set({ 'x-access-token': token })
       .send({
       })
       .end((err, res) => {

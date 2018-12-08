@@ -159,31 +159,34 @@ export default class redFlagRecordsController {
    * @returns {object} Class instance
    */
 
-  static editRecordComment(req, res) {
-    const record = records.find(singleRecord => singleRecord.id === Number(req.params.id));
-    if (record) {
-      const errors = validationResult(req).array().map(error => error.msg);
-      if (errors.length < 1) {
-        record.comment = req.body.comment;
+  static async editRecordComment(req, res) {
+    const errors = validationResult(req).array().map(error => error.msg);
+    if (errors.length < 1) {
+      const record = await Records.findOneById(req.params.id);
+      if (record.rowCount === 1) {
+        const payload = {
+          id: req.params.id,
+          fieldName: 'comment',
+          data: req.body.comment,
+        };
+        const updateRecord = await Records.update(payload);
         res.json({
           status: 200,
-          data: [
-            {
-              id: record.id,
-              message: 'Updated red-flag record\'s comment',
-            },
-          ],
+          data: [{
+            id: updateRecord.rows[0].id,
+            message: 'Updated red-flag record\'s comment',
+          }],
         });
       } else {
         res.json({
-          status: 400,
-          error: errors,
+          status: 404,
+          error: 'No record was found with the given id.',
         });
       }
     } else {
       res.json({
-        status: 404,
-        error: 'No record was found with the given id.',
+        status: 400,
+        error: errors,
       });
     }
   }
