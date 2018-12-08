@@ -1,12 +1,12 @@
 /* eslint-disable no-dupe-class-members */
 /* eslint-disable import/prefer-default-export */
 import ExpressValidator from 'express-validator/check';
-import faker from 'faker';
+import Records from '../models/recordsModel';
 import records from '../data/records';
 
 const { validationResult } = ExpressValidator;
 
-export default class RecordsController {
+export default class redFlagRecordsController {
   /**
    * @description - Add a new red-flag record
    * @static
@@ -18,23 +18,25 @@ export default class RecordsController {
    *
    * @returns {object} Class instance
    */
-  static addRedFlagRecord(req, res) {
+  static async addRedFlagRecord(req, res) {
     const redFlag = req.body;
     // get all errors from express validator
     const errors = validationResult(req).array().map(error => error.msg);
     // pick last record from records array, check it's id
     // the last record's id + 1 is the new record's id
     if (errors.length < 1) {
-      const lastRecord = records.reverse()[0];
-      redFlag.createdBy = 1;
-      redFlag.createdOn = faker.date.recent();
-      redFlag.id = lastRecord.id + 1;
-      records.push(req.body);
+      redFlag.createdBy = req.user.id;
+      redFlag.videos = redFlag.video || '';
+      redFlag.images = redFlag.images || '';
+      redFlag.status = 'draft';
+      redFlag.createdOn = new Date().toISOString().slice(0, 19).replace('T', ' ');
+      redFlag.type = 'red-flag';
+      const record = await Records.createRecord(redFlag);
       res.json({
         status: 200,
         data: [
           {
-            id: redFlag.id,
+            id: record.rows[0].id,
             message: 'Created red-flag record',
           },
         ],
