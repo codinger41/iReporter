@@ -5,10 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "babel-node --presets env,stage-2 server/app.js",
-    "test": "mocha server/tests/app.test.js --require babel-register --exit",
+    "test": "npm run drop-tables && npm run create-tables && mocha server/tests/app.test.js --timeout=10000 --require babel-register --exit",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov yarn test",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "create-tables": "babel-node server/models/createTables"
+    "create-tables": "babel-node server/models/createTables",
+    "drop-tables": "babel-node server/models/dropTables"
   },
   "repository": {
     "type": "git",
@@ -22,6 +23,7 @@
   "homepage": "https://github.com/leksyib/iReporter#readme",
   "dependencies": {
     "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "babel-preset-stage-2": "^6.24.1",
     "babel-register": "^6.26.0",

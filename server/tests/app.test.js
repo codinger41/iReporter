@@ -1,4 +1,5 @@
 /* eslint-disable no-undef */
+import 'babel-polyfill';
 import chai from 'chai';
 import faker from 'faker';
 import chaiHttp from 'chai-http';
@@ -8,6 +9,17 @@ const { expect } = chai;
 
 chai.use(chaiHttp);
 
+const user = {
+  firstname: 'Olamilekan',
+  lastname: 'Ibrahim',
+  othernames: 'olamilekan',
+  email: 'leksyib14@gmail.com',
+  phonenumber: '09052989486',
+  password: '12345678',
+  username: 'leksyib',
+  registered: faker.date.recent(),
+  isadmin: false,
+};
 
 describe('GET api/v1/red-flags', () => {
   it('should return all available red-flag records', (done) => {
@@ -259,27 +271,18 @@ describe('Delete api/v1/red-flags/:id/', () => {
 describe('POST api/v1/auth/signup', () => {
   it('should successfully create a user account if inputs are valid', (done) => {
     chai.request(app)
-      .patch('/api/v1/auth/signup')
-      .send({
-        firstname: faker.name.firstName(),
-        lastname: faker.name.lastName(),
-        othernames: faker.name.findName(),
-        email: faker.internet.email(),
-        phoneNumber: faker.phone.phoneNumber(),
-        username: faker.internet.userName(),
-        registered: faker.date.recent(),
-        isAdmin: false,
-      })
+      .post('/api/v1/auth/signup')
+      .send(user)
       .end((err, res) => {
         if (err) done();
         const { body } = res;
         expect(body).to.be.an('object');
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(200);
-        expect(body.data).to.haveOwnProperty('token');
-        expect(body.data).to.haveOwnProperty('user');
-        expect(body.data.user).to.be.an('object');
-        expect(body.data.token).to.be.a('string');
+        expect(body.data[0]).to.haveOwnProperty('token');
+        expect(body.data[0]).to.haveOwnProperty('user');
+        expect(body.data[0].user).to.be.an('object');
+        expect(body.data[0].token).to.be.a('string');
         done();
       });
   });
@@ -288,17 +291,8 @@ describe('POST api/v1/auth/signup', () => {
 describe('POST api/v1/auth/signup', () => {
   it('should return an error if signup inputs are invalid', (done) => {
     chai.request(app)
-      .patch('/api/v1/auth/signup')
-      .send({
-        firstname: faker.name.firstName(),
-        lastname: faker.name.lastName(),
-        othernames: faker.name.findName(),
-        email: faker.internet.email(),
-        phoneNumber: faker.phone.phoneNumber(),
-        username: faker.internet.userName(),
-        registered: faker.date.recent(),
-        isAdmin: false,
-      })
+      .post('/api/v1/auth/signup')
+      .send()
       .end((err, res) => {
         if (err) done();
         const { body } = res;
@@ -306,7 +300,7 @@ describe('POST api/v1/auth/signup', () => {
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(400);
         expect(body).to.haveOwnProperty('error');
-        expect(body.error).to.be.a('string');
+        expect(body.error).to.be.a('array');
         done();
       });
   });
@@ -315,21 +309,18 @@ describe('POST api/v1/auth/signup', () => {
 describe('POST api/v1/auth/login', () => {
   it('should successfully log a user in if login inputs are valid', (done) => {
     chai.request(app)
-      .patch('/api/v1/auth/login')
-      .send({
-        username: faker.internet.userName(),
-        password: faker.internet.password(),
-      })
+      .post('/api/v1/auth/login')
+      .send(user)
       .end((err, res) => {
         if (err) done();
         const { body } = res;
         expect(body).to.be.an('object');
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(200);
-        expect(body.data).to.haveOwnProperty('token');
-        expect(body.data).to.haveOwnProperty('user');
-        expect(body.data.user).to.be.an('object');
-        expect(body.data.token).to.be.a('string');
+        expect(body.data[0]).to.haveOwnProperty('token');
+        expect(body.data[0]).to.haveOwnProperty('user');
+        expect(body.data[0].user).to.be.an('object');
+        expect(body.data[0].token).to.be.a('string');
         done();
       });
   });
@@ -338,7 +329,7 @@ describe('POST api/v1/auth/login', () => {
 describe('POST api/v1/auth/login', () => {
   it('should return an error if login inputs are invalid', (done) => {
     chai.request(app)
-      .patch('/api/v1/auth/login')
+      .post('/api/v1/auth/login')
       .send({
         username: faker.internet.userName(),
         password: faker.internet.password(),
