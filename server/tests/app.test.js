@@ -1,13 +1,26 @@
 /* eslint-disable no-undef */
+import 'babel-polyfill';
 import chai from 'chai';
 import faker from 'faker';
 import chaiHttp from 'chai-http';
+import errorHandler from '../helpers/errorhandler';
 import app from '../app';
 
 const { expect } = chai;
 
 chai.use(chaiHttp);
 
+const user = {
+  firstname: 'Olamilekan',
+  lastname: 'Ibrahim',
+  othernames: 'olamilekan',
+  email: 'leksyib14@gmail.com',
+  phonenumber: '09052989486',
+  password: '12345678',
+  username: 'leksyib',
+  registered: faker.date.recent(),
+  isadmin: false,
+};
 
 describe('GET api/v1/red-flags', () => {
   it('should return all available red-flag records', (done) => {
@@ -66,7 +79,7 @@ describe('POST api/v1/red-flags', () => {
       .post('/api/v1/red-flags/')
       .send({
         location: `${faker.address.longitude()}, ${faker.address.latitude()}`,
-        comment: `${faker.random.words()}`,
+        comment: `${faker.random.words()} ${faker.random.words()}`,
         type: 'red-flag',
       })
       .end((err, res) => {
@@ -251,6 +264,152 @@ describe('Delete api/v1/red-flags/:id/', () => {
         expect(body.status).to.be.equals(404);
         expect(body).to.haveOwnProperty('error');
         expect(body.error).to.equals('No record was found with the given id.');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/signup', () => {
+  it('should successfully create a user account if inputs are valid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(user)
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(200);
+        expect(body.data[0]).to.haveOwnProperty('token');
+        expect(body.data[0]).to.haveOwnProperty('user');
+        expect(body.data[0].user).to.be.an('object');
+        expect(body.data[0].token).to.be.a('string');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/signup', () => {
+  it('should return an error if signup inputs are invalid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send()
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('array');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/signup', () => {
+  it('should return an error if username or email already exists', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send({
+        username: 'leksyib',
+        email: faker.internet.email(),
+        firstname: faker.name.firstName(),
+        lastname: faker.name.lastName(),
+        registered: faker.date.recent(),
+        phonenumber: '21334314543',
+        password: '3qwdvf34wedscerscd',
+        isadmin: false,
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('string');
+        expect(body.error).to.equals(errorHandler[0].message);
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/login', () => {
+  it('should successfully log a user in if login inputs are valid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send(user)
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(200);
+        expect(body.data[0]).to.haveOwnProperty('token');
+        expect(body.data[0]).to.haveOwnProperty('user');
+        expect(body.data[0].user).to.be.an('object');
+        expect(body.data[0].token).to.be.a('string');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/login', () => {
+  it('should return an error if login inputs are invalid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        username: faker.internet.userName(),
+        password: faker.internet.password(),
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('string');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/login', () => {
+  it('should return an error if login inputs are empty', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send()
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('array');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/login', () => {
+  it('should return an error if login password is wrong', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        username: user.username,
+        password: '1fiuvjnmwcijnmk3wdc0',
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('string');
         done();
       });
   });
