@@ -47,10 +47,9 @@ export default class UserController {
       const user = await User.findOneByUsername(username);
       if (!(user.rowCount === 1)) {
         // 'user' is an error here.
-        const error = user;
         res.json({
           status: 400,
-          error,
+          error: 'You do not have an active account, please signup.',
         });
       } else {
         const passwordisValid = bcrypt.compareSync(password, user.rows[0].password);
