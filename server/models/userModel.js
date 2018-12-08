@@ -5,7 +5,6 @@ dotenv.config();
 
 const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
-  database: 'ireporter',
 });
 
 export default class UserModel {
