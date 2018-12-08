@@ -7,6 +7,17 @@ import errorHandler from '../helpers/errorhandler';
 const { validationResult } = ExpressValidator;
 
 export default class UserController {
+  /**
+   * @description - Sign up a new user account
+   * @static
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   *
+   * @memberof RecordsController
+   *
+   * @returns {object} Class instance
+   */
   static async signUp(req, res) {
     const errors = validationResult(req).array().map(error => error.msg);
     if (errors.length < 1) {
@@ -40,6 +51,17 @@ export default class UserController {
     }
   }
 
+  /**
+   * @description - Sign in a user account
+   * @static
+   *
+   * @param {object} req - HTTP Request
+   * @param {object} res - HTTP Response
+   *
+   * @memberof RecordsController
+   *
+   * @returns {object} Class instance
+   */
   static async signIn(req, res) {
     const errors = validationResult(req).array().map(error => error.msg);
     if (errors.length < 1) {
