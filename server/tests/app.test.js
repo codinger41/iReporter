@@ -241,7 +241,7 @@ describe('GET api/v1/red-flags', () => {
 describe('GET api/v1/red-flags/:id', () => {
   it('should return a red-flag record with a specific id', (done) => {
     chai.request(app)
-      .get('/api/v1/red-flags/2')
+      .get('/api/v1/red-flags/1')
       .end((err, res) => {
         if (err) done();
         const { body } = res;

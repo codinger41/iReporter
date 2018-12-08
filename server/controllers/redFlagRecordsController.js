@@ -61,12 +61,12 @@ export default class redFlagRecordsController {
    * @returns {object} Class instance
    */
 
-  static getAllRedFlagRecords(req, res) {
-    const redFlagRecords = records.filter(record => record.type === 'red-flag');
-    if (redFlagRecords.length >= 1) {
+  static async getAllRedFlagRecords(req, res) {
+    const redFlagRecords = await Records.findAll();
+    if (redFlagRecords.rowCount >= 1) {
       res.json({
         status: 200,
-        data: redFlagRecords,
+        data: redFlagRecords.rows,
       });
     } else {
       res.json({

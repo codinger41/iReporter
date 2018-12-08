@@ -46,4 +46,14 @@ export default class RecordModel {
       return error;
     }
   }
+
+  static async findAll() {
+    try {
+      const query = 'SELECT * FROM records';
+      const res = await pool.query(query);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
 }
