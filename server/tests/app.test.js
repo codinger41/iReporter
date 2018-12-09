@@ -380,6 +380,26 @@ describe('PATCH api/v1/red-flags/:id/location', () => {
 });
 
 describe('PATCH api/v1/red-flags/:id/location', () => {
+  it('should return an error if the record was not created by the user', (done) => {
+    chai.request(app)
+      .patch('/api/v1/red-flags/3223432345432432/location')
+      .set({ 'x-access-token': token })
+      .send({
+        location: '543.3213, 423.242',
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(404);
+        expect(body).to.haveOwnProperty('error');
+        done();
+      });
+  });
+});
+
+describe('PATCH api/v1/red-flags/:id/location', () => {
   it('should return an error if the location field is empty', (done) => {
     chai.request(app)
       .patch('/api/v1/red-flags/1/location')
@@ -560,7 +580,6 @@ describe('POST api/v1/intervention', () => {
   });
 });
 
-
 describe('POST api/v1/intervention', () => {
   it('should return an unauthorized error if there is an invalid jwt token', (done) => {
     chai.request(app)
@@ -702,7 +721,7 @@ describe('PATCH api/v1/intervention/:id/location', () => {
 describe('PATCH api/v1/intervention/:id/location', () => {
   it('should return an error if the location field is empty', (done) => {
     chai.request(app)
-      .patch('/api/v1/intervention/1/location')
+      .patch('/api/v1/intervention/2/location')
       .set({ 'x-access-token': token })
       .send()
       .end((err, res) => {
@@ -761,7 +780,7 @@ describe('PATCH api/v1/intervention/:id/comment', () => {
 describe('PATCH api/v1/intervention/:id/comment', () => {
   it('should return an error if the comment field is empty', (done) => {
     chai.request(app)
-      .patch('/api/v1/intervention/1/comment')
+      .patch('/api/v1/intervention/2/comment')
       .set({ 'x-access-token': token })
       .send({
       })

@@ -6,7 +6,7 @@ import {
 } from '../middleware/validator';
 import AuthRequired from '../middleware/authentication';
 import InterventionController from '../controllers/interventionRecordsController';
-
+import { userOwnsRecord } from '../middleware/checkPermission';
 
 const routes = (app) => {
   // auth routes
@@ -16,16 +16,16 @@ const routes = (app) => {
   app.post('/api/v1/red-flags', AuthRequired, validateNewRecords, RedFlagRecordsController.addRedFlagRecord);
   app.get('/api/v1/red-flags', RedFlagRecordsController.getAllRedFlagRecords);
   app.get('/api/v1/red-flags/:id', RedFlagRecordsController.getSpecificRedFlagRecord);
-  app.patch('/api/v1/red-flags/:id/location', AuthRequired, validatePatchLocation, RedFlagRecordsController.editRecordLocation);
-  app.patch('/api/v1/red-flags/:id/comment', validatePatchComment, RedFlagRecordsController.editRecordComment);
-  app.delete('/api/v1/red-flags/:id/', RedFlagRecordsController.deleteARecord);
+  app.patch('/api/v1/red-flags/:id/location', AuthRequired, userOwnsRecord, validatePatchLocation, RedFlagRecordsController.editRecordLocation);
+  app.patch('/api/v1/red-flags/:id/comment', AuthRequired, userOwnsRecord, validatePatchComment, RedFlagRecordsController.editRecordComment);
+  app.delete('/api/v1/red-flags/:id/', AuthRequired, userOwnsRecord, RedFlagRecordsController.deleteARecord);
   // intervention routes
   app.post('/api/v1/intervention', AuthRequired, validateNewRecords, InterventionController.addInterventionRecord);
   app.get('/api/v1/intervention', InterventionController.getAllInterventionRecords);
   app.get('/api/v1/intervention/:id', InterventionController.getSpecificInterventionRecord);
-  app.patch('/api/v1/intervention/:id/location', AuthRequired, validatePatchLocation, InterventionController.editRecordLocation);
-  app.patch('/api/v1/intervention/:id/comment', validatePatchComment, InterventionController.editRecordComment);
-  app.delete('/api/v1/intervention/:id/', InterventionController.deleteARecord);
+  app.patch('/api/v1/intervention/:id/location', AuthRequired, userOwnsRecord, validatePatchLocation, InterventionController.editRecordLocation);
+  app.patch('/api/v1/intervention/:id/comment', AuthRequired, userOwnsRecord, validatePatchComment, InterventionController.editRecordComment);
+  app.delete('/api/v1/intervention/:id/', AuthRequired, userOwnsRecord, InterventionController.deleteARecord);
 };
 
 export default routes;
