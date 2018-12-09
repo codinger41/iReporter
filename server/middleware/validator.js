@@ -75,3 +75,10 @@ export const validateLogin = [
     .isLength({ min: 6 })
     .withMessage('Password must be at least 6 characters long'),
 ];
+
+export const validateStatus = [
+  check('status')
+    .isString().withMessage('Status must be alphabetical characters.')
+    .isLength({ min: 4, max: 20 })
+    .withMessage('Status must be at least 5 characters long and not more than 20'),
+];

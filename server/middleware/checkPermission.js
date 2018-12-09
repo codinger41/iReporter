@@ -18,3 +18,11 @@ export const userOwnsRecord = async (req, res, next) => {
     error: 'No record was found with the given id.',
   });
 };
+
+export const isAdmin = (req, res, next) => {
+  if (req.user.isadmin) return next();
+  return res.json({
+    status: 403,
+    error: 'Unauthorized. Only an admin can perform this operation.',
+  });
+};

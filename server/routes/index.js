@@ -3,10 +3,12 @@ import UserController from '../controllers/userController';
 import {
   validateNewRecords, validatePatchComment,
   validatePatchLocation, validateSignup, validateLogin,
+  validateStatus,
 } from '../middleware/validator';
 import AuthRequired from '../middleware/authentication';
 import InterventionController from '../controllers/interventionRecordsController';
-import { userOwnsRecord } from '../middleware/checkPermission';
+import AdminController from '../controllers/adminController';
+import { userOwnsRecord, isAdmin } from '../middleware/checkPermission';
 
 const routes = (app) => {
   // auth routes
@@ -26,6 +28,10 @@ const routes = (app) => {
   app.patch('/api/v1/intervention/:id/location', AuthRequired, userOwnsRecord, validatePatchLocation, InterventionController.editRecordLocation);
   app.patch('/api/v1/intervention/:id/comment', AuthRequired, userOwnsRecord, validatePatchComment, InterventionController.editRecordComment);
   app.delete('/api/v1/intervention/:id/', AuthRequired, userOwnsRecord, InterventionController.deleteARecord);
+
+  // admin routes
+  app.patch('/api/v1/intervention/:id/status', AuthRequired, isAdmin, validateStatus, AdminController.changeRecordStatus);
+  app.patch('/api/v1/red-flags/:id/status', AuthRequired, isAdmin, validateStatus, AdminController.changeRecordStatus);
 };
 
 export default routes;

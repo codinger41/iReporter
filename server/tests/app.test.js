@@ -22,7 +22,20 @@ const user = {
   isadmin: false,
 };
 
+const admin = {
+  firstname: 'Olamilekanio',
+  lastname: 'Ibrahimovic',
+  othernames: 'agbolahan',
+  email: 'leksyib13@gmail.com',
+  phonenumber: '0905298944386',
+  password: '123456785r',
+  username: 'leksyib12',
+  registered: faker.date.recent(),
+  isadmin: true,
+};
+
 let token;
+let adminToken;
 
 // authentication routes tests
 
@@ -36,6 +49,28 @@ describe('POST api/v1/auth/signup', () => {
         const { body } = res;
         // eslint-disable-next-line prefer-destructuring
         token = body.data[0].token;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(200);
+        expect(body.data[0]).to.haveOwnProperty('token');
+        expect(body.data[0]).to.haveOwnProperty('user');
+        expect(body.data[0].user).to.be.an('object');
+        expect(body.data[0].token).to.be.a('string');
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/signup', () => {
+  it('should successfully create an admin account if inputs are valid', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send(admin)
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        // eslint-disable-next-line prefer-destructuring
+        adminToken = body.data[0].token;
         expect(body).to.be.an('object');
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(200);
@@ -458,6 +493,66 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
   });
 });
 
+describe('PATCH api/v1/red-flag/:id/status', () => {
+  it('should return a 403 error if the user is not an admin', (done) => {
+    chai.request(app)
+      .patch('/api/v1/red-flags/1/status')
+      .set({ 'x-access-token': token })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(403);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.equals('Unauthorized. Only an admin can perform this operation.');
+        done();
+      });
+  });
+});
+
+describe('PATCH api/v1/red-flag/:id/status', () => {
+  it('should return a 404 error if the record to update does not exist', (done) => {
+    chai.request(app)
+      .patch('/api/v1/red-flags/5432345/status')
+      .set({ 'x-access-token': adminToken })
+      .send({
+        status: 'resolved',
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(404);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.equals('No record was found with the given id.');
+        done();
+      });
+  });
+});
+
+describe('PATCH api/v1/red-flags/:id/status', () => {
+  it('should successfully change the status of a record is the user is an admin', (done) => {
+    chai.request(app)
+      .patch('/api/v1/red-flags/1/status')
+      .set({ 'x-access-token': adminToken })
+      .send({
+        status: 'resolved',
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(200);
+        expect(body).to.haveOwnProperty('data');
+        expect(body.data[0].message).to.equals('Updated red-flag record\'s status');
+        done();
+      });
+  });
+});
+
 describe('PATCH api/v1/red-flags/:id/comment', () => {
   it('should return an error if the comment field is empty', (done) => {
     chai.request(app)
@@ -772,6 +867,64 @@ describe('PATCH api/v1/intervention/:id/comment', () => {
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(404);
         expect(body).to.haveOwnProperty('error');
+        done();
+      });
+  });
+});
+
+describe('PATCH api/v1/intervention/:id/status', () => {
+  it('should return a 403 error if the user is not an admin', (done) => {
+    chai.request(app)
+      .patch('/api/v1/intervention/2/status')
+      .set({ 'x-access-token': token })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(403);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.equals('Unauthorized. Only an admin can perform this operation.');
+        done();
+      });
+  });
+});
+
+describe('PATCH api/v1/intervention/:id/status', () => {
+  it('should successfully change the status of a record is the user is an admin', (done) => {
+    chai.request(app)
+      .patch('/api/v1/intervention/2/status')
+      .set({ 'x-access-token': adminToken })
+      .send({
+        status: 'resolved',
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(200);
+        expect(body).to.haveOwnProperty('data');
+        expect(body.data[0].message).to.equals('Updated red-flag record\'s status');
+        done();
+      });
+  });
+});
+
+describe('PATCH api/v1/intervention/:id/status', () => {
+  it('should return an error if status is empty', (done) => {
+    chai.request(app)
+      .patch('/api/v1/intervention/2/status')
+      .set({ 'x-access-token': adminToken })
+      .send()
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.an('array');
         done();
       });
   });
