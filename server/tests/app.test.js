@@ -409,6 +409,7 @@ describe('PATCH api/v1/red-flags/:id/location', () => {
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(404);
         expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.equal('No record was found with the given id.');
         done();
       });
   });
@@ -476,7 +477,7 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
 describe('PATCH api/v1/red-flags/:id/comment', () => {
   it('should return an error if the id is not existing', (done) => {
     chai.request(app)
-      .patch('/api/v1/red-flags/non-existing-id/comment')
+      .patch('/api/v1/red-flags/54325432123/comment')
       .set({ 'x-access-token': token })
       .send({
         comment: faker.random.words(),
@@ -488,6 +489,7 @@ describe('PATCH api/v1/red-flags/:id/comment', () => {
         expect(body.status).to.be.a('number');
         expect(body.status).to.be.equals(404);
         expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.equal('No record was found with the given id.');
         done();
       });
   });

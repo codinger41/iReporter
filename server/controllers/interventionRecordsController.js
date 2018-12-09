@@ -117,27 +117,19 @@ export default class InterventionController {
   static async editRecordLocation(req, res) {
     const errors = validationResult(req).array().map(error => error.msg);
     if (errors.length < 1) {
-      const record = await Records.findOneById(req.params.id);
-      if (record.rowCount === 1) {
-        const payload = {
-          id: req.params.id,
-          fieldName: 'location',
-          data: req.body.location,
-        };
-        const updateRecord = await Records.update(payload);
-        res.json({
-          status: 200,
-          data: [{
-            id: updateRecord.rows[0].id,
-            message: 'Updated intervention record\'s location',
-          }],
-        });
-      } else {
-        res.json({
-          status: 404,
-          error: 'No record was found with the given id.',
-        });
-      }
+      const payload = {
+        id: req.params.id,
+        fieldName: 'location',
+        data: req.body.location,
+      };
+      const updateRecord = await Records.update(payload);
+      res.json({
+        status: 200,
+        data: [{
+          id: updateRecord.rows[0].id,
+          message: 'Updated intervention record\'s location',
+        }],
+      });
     } else {
       res.json({
         status: 400,
@@ -161,27 +153,19 @@ export default class InterventionController {
   static async editRecordComment(req, res) {
     const errors = validationResult(req).array().map(error => error.msg);
     if (errors.length < 1) {
-      const record = await Records.findOneById(req.params.id);
-      if (record.rowCount === 1) {
-        const payload = {
-          id: req.params.id,
-          fieldName: 'comment',
-          data: req.body.comment,
-        };
-        const updateRecord = await Records.update(payload);
-        res.json({
-          status: 200,
-          data: [{
-            id: updateRecord.rows[0].id,
-            message: 'Updated intervention record\'s comment',
-          }],
-        });
-      } else {
-        res.json({
-          status: 404,
-          error: 'No record was found with the given id.',
-        });
-      }
+      const payload = {
+        id: req.params.id,
+        fieldName: 'comment',
+        data: req.body.comment,
+      };
+      const updateRecord = await Records.update(payload);
+      res.json({
+        status: 200,
+        data: [{
+          id: updateRecord.rows[0].id,
+          message: 'Updated intervention record\'s comment',
+        }],
+      });
     } else {
       res.json({
         status: 400,
@@ -202,21 +186,13 @@ export default class InterventionController {
    */
 
   static async deleteARecord(req, res) {
-    const record = await Records.findOneById(req.params.id);
-    if (record.rowCount === 1) {
-      const deleteRecord = await Records.deleteById(req.params.id);
-      res.json({
-        status: 200,
-        data: [{
-          id: deleteRecord.rows[0].id,
-          message: 'intervention record has been deleted.',
-        }],
-      });
-    } else {
-      res.json({
-        status: 404,
-        error: 'No record was found with the given id.',
-      });
-    }
+    const deleteRecord = await Records.deleteById(req.params.id);
+    res.json({
+      status: 200,
+      data: [{
+        id: deleteRecord.rows[0].id,
+        message: 'intervention record has been deleted.',
+      }],
+    });
   }
 }
