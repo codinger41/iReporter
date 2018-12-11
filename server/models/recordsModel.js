@@ -47,9 +47,9 @@ export default class RecordModel {
     }
   }
 
-  static async findAll() {
+  static async findAll({ type }) {
     try {
-      const query = 'SELECT * FROM records';
+      const query = type ? `SELECT * FROM records WHERE type= '${type}'` : 'SELECT * FROM records';
       const res = await pool.query(query);
       return res;
     } catch (error) {

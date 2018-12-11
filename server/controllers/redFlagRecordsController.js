@@ -61,7 +61,7 @@ export default class RedflagController {
    */
 
   static async getAllRedFlagRecords(req, res) {
-    const redFlagRecords = await Records.findAll();
+    const redFlagRecords = await Records.findAll({ type: 'red-flag' });
     if (redFlagRecords.rowCount >= 1) {
       res.json({
         status: 200,

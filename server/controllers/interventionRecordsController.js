@@ -61,7 +61,7 @@ export default class InterventionController {
    */
 
   static async getAllInterventionRecords(req, res) {
-    const interventionRecords = await Records.findAll();
+    const interventionRecords = await Records.findAll({ type: 'intervention' });
     if (interventionRecords.rowCount >= 1) {
       res.json({
         status: 200,
