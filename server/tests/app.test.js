@@ -986,3 +986,20 @@ describe('Delete api/v1/intervention/:id/', () => {
       });
   });
 });
+
+describe('POST any unexistent route', () => {
+  it('should return an error with status 404 that the endpoint does not exist', (done) => {
+    chai.request(app)
+      .post('/tre')
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(404);
+        expect(body.error).to.be.a('string');
+        expect(body.error).to.equals('This page does not exist.');
+        done();
+      });
+  });
+});

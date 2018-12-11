@@ -16,6 +16,13 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 routes(app);
+
+app.all('*', (req, res) => {
+  res.json({
+    status: 404,
+    error: 'This page does not exist.',
+  });
+});
 // run server
 app.listen(port, () => {
   console.log(`server is running on port ${port}`);
