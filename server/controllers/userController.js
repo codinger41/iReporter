@@ -33,7 +33,14 @@ export default class UserController {
           error: errorHandler.find(err => err.code === error.code).message,
         });
       } else {
-        const token = generateToken(user.rows[0]);
+        const jwtData = {
+          username: user.rows[0].username,
+          email: user.rows[0].email,
+          id: user.rows[0].id,
+          isadmin: user.rows[0].isadmin,
+        };
+
+        const token = generateToken(jwtData);
         res.json({
           status: 200,
           data: [
@@ -77,7 +84,13 @@ export default class UserController {
       } else {
         const passwordisValid = bcrypt.compareSync(password, user.rows[0].password);
         if (passwordisValid) {
-          const token = generateToken(user.rows[0]);
+          const jwtData = {
+            username: user.rows[0].username,
+            email: user.rows[0].email,
+            id: user.rows[0].id,
+            isadmin: user.rows[0].isadmin,
+          };
+          const token = generateToken(jwtData);
           res.json({
             status: 200,
             data: [
