@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node --presets env,stage-2 server/app.js",
+    "start": "npm run create-tables && babel-node --presets env,stage-2 server/app.js",
     "test": "npm run drop-tables && npm run create-tables && mocha server/tests/app.test.js --timeout=20000 --require babel-register --exit",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov yarn test",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
