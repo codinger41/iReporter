@@ -2,6 +2,8 @@
 /* eslint-disable import/prefer-default-export */
 import ExpressValidator from 'express-validator/check';
 import Records from '../models/recordsModel';
+import Users from '../models/userModel';
+import sendMail from '../helpers/email';
 
 const { validationResult } = ExpressValidator;
 
@@ -29,6 +31,13 @@ export default class AdminController {
           data: req.body.status,
         };
         const updateRecord = await Records.update(payload);
+        const user = await Users.findById(updateRecord.rows[0].createdby);
+        const emailPayload = {
+          firstname: user.rows[0].firstname,
+          email: user.rows[0].email,
+          status: req.body.status,
+        };
+        await sendMail(emailPayload);
         res.json({
           status: 200,
           data: [{

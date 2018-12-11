@@ -23,6 +23,7 @@ export default class UserController {
     if (errors.length < 1) {
       const userObj = req.body;
       userObj.password = bcrypt.hashSync(userObj.password, 10);
+      userObj.registered = new Date().toISOString().slice(0, 19).replace('T', ' ');
       const user = await User.createUser(userObj);
       if (!(user.rowCount === 1)) {
         // 'user' is an error here.

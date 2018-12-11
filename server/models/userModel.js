@@ -37,9 +37,39 @@ export default class UserModel {
     }
   }
 
+  /**
+   * @description - Sign
+   * @static
+   *
+   * @param {object} - username
+   *
+   * @memberof UserModel
+   *
+   * @returns {object} Class instance
+   * */
   static async findOneByUsername(username) {
     try {
       const query = `SELECT * FROM users WHERE username = '${username}' `;
+      const res = await pool.query(query);
+      return res;
+    } catch (error) {
+      return error;
+    }
+  }
+
+  /**
+   * @description - Sign
+   * @static
+   *
+   * @param {object} - User id
+   *
+   * @memberof UserModel
+   *
+   * @returns {object} Class instance
+   * */
+  static async findById(id) {
+    try {
+      const query = `SELECT * FROM users WHERE id = ${id} `;
       const res = await pool.query(query);
       return res;
     } catch (error) {

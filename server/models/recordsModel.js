@@ -64,7 +64,7 @@ export default class RecordModel {
         UPDATE records
         SET ${fieldName} = '${data}'
         WHERE id = ${Number(id)}
-        RETURNING id
+        RETURNING *
       `;
       const res = await pool.query(query);
       return res;
