@@ -1,7 +1,9 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import swaggerUI from 'swagger-ui-express';
 import routes from './routes/index';
+import doc from '../doc.json';
 
 dotenv.config();
 
@@ -15,6 +17,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
+// render swagger UI
+app.use('/api-docs', swaggerUI.serve, swaggerUI.setup(doc));
 routes(app);
 
 app.all('*', (req, res) => {
