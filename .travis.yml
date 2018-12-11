@@ -23,3 +23,5 @@ env:
     - touch .env
     - echo DATABASEURL=postgres://otbbamwa:205z5X5ci5LPw3nQfDMcYqlmH6NXAWLy@elmer.db.elephantsql.com:5432/otbbamwa >> .env
     - echo JWT_SECRET=RERESCESDCEDSC >> .env
+    - echo EMAIL_ADDRESS= ireporter23@gmail.com >> .env
+    - echo EMAIL_PASSWORD= ireporter2018 >> .env
