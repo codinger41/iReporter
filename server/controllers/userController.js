@@ -46,7 +46,7 @@ export default class UserController {
           data: [
             {
               token,
-              user: user.rows[0],
+              user: jwtData,
             },
           ],
         });
@@ -96,7 +96,7 @@ export default class UserController {
             data: [
               {
                 token,
-                user: user.rows[0],
+                user: jwtData,
               },
             ],
           });
