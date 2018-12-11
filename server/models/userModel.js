@@ -27,7 +27,7 @@ export default class UserModel {
 
       const query = `
         INSERT INTO users(firstname, lastname, othernames, username, phonenumber, password, email, isadmin, registered)
-        VALUES ('${firstname}', '${lastname}', '${othernames}', '${username}', '${phonenumber}', '${password}', '${email}', '${isadmin}', '${registered}')
+        VALUES ('${firstname.trim()}', '${lastname.trim()}', '${othernames.trim()}', '${username.trim()}', '${phonenumber.trim().trim()}', '${password.trim()}', '${email.trim()}', '${isadmin}', '${registered}')
         RETURNING *
       `;
       const res = await pool.query(query);
@@ -49,7 +49,7 @@ export default class UserModel {
    * */
   static async findOneByUsername(username) {
     try {
-      const query = `SELECT * FROM users WHERE username = '${username}' `;
+      const query = `SELECT * FROM users WHERE username = '${username.trim()}' `;
       const res = await pool.query(query);
       return res;
     } catch (error) {
