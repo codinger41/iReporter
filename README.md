@@ -18,7 +18,7 @@ yarn
 ```
 3. Create a `.env` file in the project copy keys added in the `env.sample` file and fill with your own env details.
 
-4 Test endpoints with postman, get api docs here: http://ireporter-leks.herokuapp.com/api-docs/
+ 4. Test endpoints with postman, get api docs here: http://ireporter-leks.herokuapp.com/api-docs/
 
 ## Features
 Below are the features of iReporter.
