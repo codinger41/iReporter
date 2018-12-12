@@ -8,9 +8,17 @@ iReporter is a web app that enables citizens bring any form of corruption to the
 
 ## 📖 Getting started
 
-`$ git clone https://github.com/leksyib/iReporter.git` <br/>
-`$ yarn` <br/>
-`$ yarn start` <br/>
+1. Clone this repository into your local machine:
+```
+git clone https://github.com/leksyib/ireporter.git
+```
+2. Install dependencies
+```
+yarn
+```
+3. Create a `.env` file in the project copy keys added in the `env.sample` file and fill with your own env details.
+
+4 Test endpoints with postman, get api docs here: http://ireporter-leks.herokuapp.com/api-docs/
 
 ## Features
 Below are the features of iReporter.
@@ -33,19 +41,6 @@ NodeJS: Node.js is an open-source, cross-platform JavaScript run-time for writin
 ExressJS: This is the web application framework for Node.js
 
 Postgresql: This is an open source database.
-
-## Installation
-1. Clone this repository into your local machine:
-```
-git clone https://github.com/leksyib/ireporter.git
-```
-2. Install dependencies
-```
-yarn
-```
-3. Create a `.env` file in the project copy keys added in the `env.sample` file and fill with your own env details.
-
-4 Test endpoints with postman
 
 
 ## Testing
