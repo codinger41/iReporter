@@ -64,6 +64,17 @@ export const validateSignup = [
     .withMessage('Phone number must be at least 10 characters long and not more than 15'),
 ];
 
+
+export const checkPassword = (req, res, next) => {
+  const { password, confirmPassword } = req.body;
+  if (password !== confirmPassword) {
+    return res.json({
+      status: 400,
+      error: 'Password and confirm password does not match.',
+    });
+  } return next();
+};
+
 export const validateLogin = [
   check('username')
     .isString().withMessage('Username must be alphabetical characters.')
@@ -74,4 +85,11 @@ export const validateLogin = [
     .isString().withMessage('Password must be alphanumeric characters.')
     .isLength({ min: 6 })
     .withMessage('Password must be at least 6 characters long'),
+];
+
+export const validateStatus = [
+  check('status')
+    .isString().withMessage('Status must be alphabetical characters.')
+    .isLength({ min: 4, max: 20 })
+    .withMessage('Status must be at least 5 characters long and not more than 20'),
 ];

@@ -21,5 +21,7 @@ env:
   global:
     - CC_TEST_REPORTER_ID= 4fe40207fc583364c7daaa5e4801c3a7e4ee6542322594f6278011169bd9375e
     - touch .env
-    - echo DATABASEURL=postgres://otbbamwa:205z5X5ci5LPw3nQfDMcYqlmH6NXAWLy@elmer.db.elephantsql.com:5432/otbbamwa >> .env
+    - echo DATABASE_URL=postgres://otbbamwa:205z5X5ci5LPw3nQfDMcYqlmH6NXAWLy@elmer.db.elephantsql.com:5432/otbbamwa >> .env
     - echo JWT_SECRET=RERESCESDCEDSC >> .env
+    - echo EMAIL_ADDRESS=ireporter23@gmail.com >> .env
+    - echo EMAIL_PASSWORD=ireporter2018 >> .env

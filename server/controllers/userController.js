@@ -23,6 +23,8 @@ export default class UserController {
     if (errors.length < 1) {
       const userObj = req.body;
       userObj.password = bcrypt.hashSync(userObj.password, 10);
+      userObj.registered = new Date().toISOString().slice(0, 19).replace('T', ' ');
+      userObj.othernames = userObj.othernames ? userObj.othernames : '';
       const user = await User.createUser(userObj);
       if (!(user.rowCount === 1)) {
         // 'user' is an error here.
@@ -32,13 +34,20 @@ export default class UserController {
           error: errorHandler.find(err => err.code === error.code).message,
         });
       } else {
-        const token = generateToken(user.rows[0]);
+        const jwtData = {
+          username: user.rows[0].username,
+          email: user.rows[0].email,
+          id: user.rows[0].id,
+          isadmin: user.rows[0].isadmin,
+        };
+
+        const token = generateToken(jwtData);
         res.json({
           status: 200,
           data: [
             {
               token,
-              user: user.rows[0],
+              user: jwtData,
             },
           ],
         });
@@ -76,13 +85,19 @@ export default class UserController {
       } else {
         const passwordisValid = bcrypt.compareSync(password, user.rows[0].password);
         if (passwordisValid) {
-          const token = generateToken(user.rows[0]);
+          const jwtData = {
+            username: user.rows[0].username,
+            email: user.rows[0].email,
+            id: user.rows[0].id,
+            isadmin: user.rows[0].isadmin,
+          };
+          const token = generateToken(jwtData);
           res.json({
             status: 200,
             data: [
               {
                 token,
-                user: user.rows[0],
+                user: jwtData,
               },
             ],
           });

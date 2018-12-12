@@ -9,17 +9,12 @@ const client = new Client({
 });
 
 const creeateTables = async () => {
-  try {
-    await client.connect();
-    await client.query(userTable);
-    await client.query(recordTable);
-    await client.end();
-    console.log('User and Record tables created successfully');
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
+  await client.connect();
+  await client.query(userTable);
+  await client.query(recordTable);
+  await client.end();
+  console.log('User and Record tables created successfully');
+  process.exit(0);
 };
 
 creeateTables();

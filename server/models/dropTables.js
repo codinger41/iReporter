@@ -8,17 +8,12 @@ const client = new Client({
 });
 
 const creeateTables = async () => {
-  try {
-    await client.connect();
-    await client.query('DROP TABLE IF EXISTS users;');
-    await client.query('DROP TABLE IF EXISTS records;');
-    await client.end();
-    console.log('User and Record tables dropped successfully');
-    process.exit(0);
-  } catch (error) {
-    console.log(error);
-    process.exit(1);
-  }
+  await client.connect();
+  await client.query('DROP TABLE IF EXISTS users;');
+  await client.query('DROP TABLE IF EXISTS records;');
+  await client.end();
+  console.log('User and Record tables dropped successfully');
+  process.exit(0);
 };
 
 creeateTables();

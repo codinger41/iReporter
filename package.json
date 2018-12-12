@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "babel-node --presets env,stage-2 server/app.js",
-    "test": "npm run drop-tables && npm run create-tables && mocha server/tests/app.test.js --timeout=10000 --require babel-register --exit",
+    "start": "npm run create-tables && babel-node --presets env,stage-2 server/app.js",
+    "test": "npm run drop-tables && npm run create-tables && mocha server/tests/app.test.js --timeout=20000 --require babel-register --exit",
     "coveralls": "nyc --reporter=lcov --reporter=text-lcov yarn test",
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "create-tables": "babel-node server/models/createTables",
@@ -40,8 +40,10 @@
     "faker": "^4.1.0",
     "jsonwebtoken": "^8.4.0",
     "mocha": "^5.2.0",
+    "nodemailer": "^4.7.0",
     "nyc": "^13.1.0",
     "pg": "^7.7.1",
+    "swagger-ui-express": "^4.0.2",
     "validator": "^10.9.0"
   },
   "devDependencies": {

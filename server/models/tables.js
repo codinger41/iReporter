@@ -18,10 +18,11 @@ export const recordTable = `
     id SERIAL,
     createdOn date,
     createdby int,
-    location varchar(20),
+    location varchar(50),
+    type varchar(50),
     status varchar(50),
     Images text[][],
     Videos text[][],
-    comment varchar(2000)
+    comment varchar(5000)
   )
 `;
