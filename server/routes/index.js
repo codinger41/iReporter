@@ -3,7 +3,7 @@ import UserController from '../controllers/userController';
 import {
   validateNewRecords, validatePatchComment,
   validatePatchLocation, validateSignup, validateLogin,
-  validateStatus,
+  validateStatus, checkPassword,
 } from '../middleware/validator';
 import AuthRequired from '../middleware/authentication';
 import InterventionController from '../controllers/interventionRecordsController';
@@ -12,7 +12,7 @@ import { userOwnsRecord, isAdmin } from '../middleware/checkPermission';
 
 const routes = (app) => {
   // auth routes
-  app.post('/api/v1/auth/signup', validateSignup, UserController.signUp);
+  app.post('/api/v1/auth/signup', checkPassword, validateSignup, UserController.signUp);
   app.post('/api/v1/auth/login', validateLogin, UserController.signIn);
   // red-flag routes
   app.post('/api/v1/red-flags', AuthRequired, validateNewRecords, RedFlagRecordsController.addRedFlagRecord);

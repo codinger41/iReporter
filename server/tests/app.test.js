@@ -18,6 +18,7 @@ const user = {
   phonenumber: '09052989486',
   password: '12345678',
   username: 'leksyib',
+  confirmPassword: '12345678',
   registered: faker.date.recent(),
   isadmin: false,
 };
@@ -29,6 +30,7 @@ const admin = {
   email: 'leksyib13@gmail.com',
   phonenumber: '0905298944386',
   password: '123456785r',
+  confirmPassword: '123456785r',
   username: 'leksyib12',
   registered: faker.date.recent(),
   isadmin: true,
@@ -113,6 +115,7 @@ describe('POST api/v1/auth/signup', () => {
         registered: faker.date.recent(),
         phonenumber: '21334314543',
         password: '3qwdvf34wedscerscd',
+        confirmPassword: '3qwdvf34wedscerscd',
         isadmin: false,
       })
       .end((err, res) => {
@@ -124,6 +127,34 @@ describe('POST api/v1/auth/signup', () => {
         expect(body).to.haveOwnProperty('error');
         expect(body.error).to.be.a('string');
         expect(body.error).to.equals(errorHandler[0].message);
+        done();
+      });
+  });
+});
+
+describe('POST api/v1/auth/signup', () => {
+  it('should return an error if passwords do not match', (done) => {
+    chai.request(app)
+      .post('/api/v1/auth/signup')
+      .send({
+        username: 'leksyib',
+        email: faker.internet.email(),
+        firstname: faker.name.firstName(),
+        lastname: faker.name.lastName(),
+        registered: faker.date.recent(),
+        phonenumber: '21334314543',
+        password: '3qwdvf34wedscerscd',
+        isadmin: false,
+      })
+      .end((err, res) => {
+        if (err) done();
+        const { body } = res;
+        expect(body).to.be.an('object');
+        expect(body.status).to.be.a('number');
+        expect(body.status).to.be.equals(400);
+        expect(body).to.haveOwnProperty('error');
+        expect(body.error).to.be.a('string');
+        expect(body.error).to.equals('Password and confirm password does not match.');
         done();
       });
   });
