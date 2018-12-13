@@ -1,9 +1,4 @@
 
-@font-face {
-  font-family: "OperatorMono";
-  src: url("./operator-mono.otf");
-  }
-
 .body {
   font-family: 'Lato', sans-serif;
   align-content: center;
@@ -60,7 +55,6 @@ footer {
   font-weight: 800;
   text-align: center;
   color: aliceblue;
-  font-family: 'OperatorMono';
   font-size: 20px
 }
 
@@ -220,7 +214,6 @@ input {
   font-weight: 800;
   text-align: center;
   color: aliceblue;
-  font-family: 'OperatorMono';
   font-size: 3vw;
 }
 
@@ -239,7 +232,6 @@ input {
 .footer-text {
   text-align: center;
   color: #ffffff;
-  font-family: 'OperatorMono';
   margin-top: 10px
 }
 .new-record {

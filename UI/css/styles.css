@@ -1,9 +1,4 @@
 
-@font-face {
-  font-family: "OperatorMono";
-  src: url("./operator-mono.otf");
-  }
-
 .body {
   font-family: 'Lato', sans-serif;
   align-content: center;
@@ -58,7 +53,6 @@ footer {
   font-weight: 800;
   text-align: center;
   color: aliceblue;
-  font-family: 'OperatorMono';
   font-size: 4vw;
 }
 
@@ -222,7 +216,6 @@ input {
   font-weight: 800;
   text-align: center;
   color: aliceblue;
-  font-family: 'OperatorMono';
   font-size: 3vw;
 }
 
@@ -241,7 +234,6 @@ input {
 .footer-text {
   text-align: center;
   color: #ffffff;
-  font-family: 'OperatorMono';
   margin-top: 10px
 }
 
@@ -249,14 +241,12 @@ input {
   font-weight: 800;
   text-align: center;
   color: aliceblue;
-  font-family: 'OperatorMono';
   font-size: 28px
 }
 
 .description-long {
   text-align: center;
   color: aliceblue;
-  font-family: 'OperatorMono';
   font-size: 17px
 }
 
@@ -292,7 +282,7 @@ img {
 .card-wrap {
   float:left;
   width:100%;
-  padding:5px;
+  padding:15px;
 }
 @media (min-width: 500px) {
   .card-wrap {
@@ -371,12 +361,12 @@ img {
   right: 0;
   display: flex;
   top: 100px;
+  justify-content: space-between;
 }
 
 .type {
   color: rgb(165, 0, 0);
   font-size: 14px;
-  font-family: Operatormono;
   margin-left: 10px
 }
 
@@ -386,9 +376,9 @@ select {
   border: none;
   font-size: 14px;
   height: 29px;
-  width: 268px;
+  width: 255px;
+  margin-right: 10px;
   color: aliceblue;
-  background: url('../images/drop.png') no-repeat right center;
 }
 
 .filter-button {
@@ -400,6 +390,7 @@ select {
   color: aliceblue;
   border-radius: 20px;
   cursor: pointer;
+  margin-right: 15px;
 }
 
 .status-update-button {
@@ -507,7 +498,8 @@ select {
   height: 70px;
   top: 80px;
   left: 5px;
-  margin-top: 10px
+  margin-top: 10px;
+  margin-left: 15px
 }
 
 .stat-box {
@@ -708,6 +700,7 @@ and (min-width : 1224px) {
       -webkit-border-radius: 20px;
       -moz-border-radius: 20px;
       border-radius: 20px;
+      margin: 5px
     }
     .modal-content {
       display: flex;
