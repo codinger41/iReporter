@@ -157,6 +157,17 @@ footer {
   height: 440px;
 }
 
+.index-row {
+  display: flex;
+  flex: 0 1 auto; 
+  flex-direction: row;
+  background: #1C6663;
+  border: 1px solid #ddd;
+  text-align: center;
+  width: 900px;
+  height: 440px;
+}
+
 .left-box {
   height: 440px;
   width: 500px;
@@ -686,6 +697,12 @@ and (orientation : portrait) {
     display: flex;
     flex-direction: row;
   }
+}
+
+
+.bg-img {
+  height: 440px;
+  width: 500px;
 }
 
 /* Desktops and laptops ----------- */
