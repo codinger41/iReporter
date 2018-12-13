@@ -11,6 +11,12 @@
     "create-tables": "babel-node server/models/createTables",
     "drop-tables": "babel-node server/models/dropTables"
   },
+  "nyc": {
+    "check-coverage": true,
+    "exclude": [
+      "server/tests/**.js"
+    ]
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/leksyib/iReporter.git"
