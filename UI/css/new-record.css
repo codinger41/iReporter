@@ -58,6 +58,11 @@ footer {
   font-size: 4vw;
 }
 
+.upload-txt {
+  color: black;
+  font-size: 15px
+}
+
 * {
   box-sizing: border-box;
   padding: 0;
