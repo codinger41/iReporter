@@ -31,7 +31,7 @@ export default class RedflagController {
       redFlag.createdOn = new Date().toISOString().slice(0, 19).replace('T', ' ');
       redFlag.type = 'red-flag';
       const record = await Records.createRecord(redFlag);
-      res.json({
+      res.status(200).json({
         status: 200,
         data: [
           {
@@ -41,7 +41,7 @@ export default class RedflagController {
         ],
       });
     } else {
-      res.json({
+      res.status(400).json({
         status: 400,
         error: errors,
       });
@@ -63,12 +63,12 @@ export default class RedflagController {
   static async getAllRedFlagRecords(req, res) {
     const redFlagRecords = await Records.findAll({ type: 'red-flag' });
     if (redFlagRecords.rowCount >= 1) {
-      res.json({
+      res.status(200).json({
         status: 200,
         data: redFlagRecords.rows,
       });
     } else {
-      res.json({
+      res.status(200).json({
         status: 204,
         data: [],
       });
@@ -90,12 +90,12 @@ export default class RedflagController {
   static async getSpecificRedFlagRecord(req, res) {
     const record = await Records.findOneById(Number(req.params.id));
     if (record.rowCount === 1) {
-      res.json({
+      res.status(200).json({
         status: 200,
         data: [record.rows[0]],
       });
     } else {
-      res.json({
+      res.status(404).json({
         status: 404,
         error: 'No record was found with the given id.',
       });
@@ -123,7 +123,7 @@ export default class RedflagController {
         data: req.body.location,
       };
       const updateRecord = await Records.update(payload);
-      res.json({
+      res.status(200).json({
         status: 200,
         data: [{
           id: updateRecord.rows[0].id,
@@ -131,7 +131,7 @@ export default class RedflagController {
         }],
       });
     } else {
-      res.json({
+      res.status(400).json({
         status: 400,
         error: errors,
       });
@@ -159,7 +159,7 @@ export default class RedflagController {
         data: req.body.comment,
       };
       const updateRecord = await Records.update(payload);
-      res.json({
+      res.status(200).json({
         status: 200,
         data: [{
           id: updateRecord.rows[0].id,
@@ -167,7 +167,7 @@ export default class RedflagController {
         }],
       });
     } else {
-      res.json({
+      res.status(400).json({
         status: 400,
         error: errors,
       });
@@ -187,7 +187,7 @@ export default class RedflagController {
 
   static async deleteARecord(req, res) {
     const deleteRecord = await Records.deleteById(req.params.id);
-    res.json({
+    res.status(200).json({
       status: 200,
       data: [{
         id: deleteRecord.rows[0].id,

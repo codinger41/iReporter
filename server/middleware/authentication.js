@@ -12,7 +12,7 @@ const AuthenticationRequired = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET, (err, decoded) => {
       if (err) {
         return res.json({
-          status: 403,
+          status: 401,
           error: 'Invalid token, you have to login first',
         });
       }
@@ -23,7 +23,7 @@ const AuthenticationRequired = (req, res, next) => {
     });
   } else {
     res.json({
-      status: 403,
+      status: 401,
       error: 'Unauthorized!, you have to login first',
     });
   }

@@ -38,7 +38,7 @@ export default class AdminController {
           status: req.body.status,
         };
         await sendMail(emailPayload);
-        res.json({
+        res.status(200).json({
           status: 200,
           data: [{
             id: updateRecord.rows[0].id,
@@ -46,13 +46,13 @@ export default class AdminController {
           }],
         });
       } else {
-        res.json({
+        res.status(404).json({
           status: 404,
           error: 'No record was found with the given id.',
         });
       }
     } else {
-      res.json({
+      res.status(400).json({
         status: 400,
         error: errors,
       });

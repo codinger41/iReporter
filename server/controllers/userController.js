@@ -29,7 +29,7 @@ export default class UserController {
       if (!(user.rowCount === 1)) {
         // 'user' is an error here.
         const error = user;
-        res.json({
+        res.status(400).json({
           status: 400,
           error: errorHandler.find(err => err.code === error.code).message,
         });
@@ -42,7 +42,7 @@ export default class UserController {
         };
 
         const token = generateToken(jwtData);
-        res.json({
+        res.status(200).json({
           status: 200,
           data: [
             {
@@ -53,7 +53,7 @@ export default class UserController {
         });
       }
     } else {
-      res.json({
+      res.status(400).json({
         status: 400,
         error: errors,
       });
@@ -78,7 +78,7 @@ export default class UserController {
       const user = await User.findOneByUsername(username);
       if (!(user.rowCount === 1)) {
         // 'user' is an error here.
-        res.json({
+        res.status(400).json({
           status: 400,
           error: 'You do not have an active account, please signup.',
         });
@@ -92,7 +92,7 @@ export default class UserController {
             isadmin: user.rows[0].isadmin,
           };
           const token = generateToken(jwtData);
-          res.json({
+          res.status(200).json({
             status: 200,
             data: [
               {
@@ -102,14 +102,14 @@ export default class UserController {
             ],
           });
         } else {
-          res.json({
+          res.status(400).json({
             status: 400,
             error: 'Password is invalid.',
           });
         }
       }
     } else {
-      res.json({
+      res.status(400).json({
         status: 400,
         error: errors,
       });

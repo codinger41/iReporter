@@ -9,7 +9,7 @@ export const userOwnsRecord = async (req, res, next) => {
       return next();
     }
     return res.json({
-      status: 403,
+      status: 401,
       error: 'You are not authorized to perform this operation.',
     });
   }
@@ -22,7 +22,7 @@ export const userOwnsRecord = async (req, res, next) => {
 export const isAdmin = (req, res, next) => {
   if (req.user.isadmin) return next();
   return res.json({
-    status: 403,
+    status: 401,
     error: 'Unauthorized. Only an admin can perform this operation.',
   });
 };
