@@ -143,7 +143,7 @@ describe('POST api/v1/intervention', () => {
         expect(body).to.be.an('object');
         expect(body).to.haveOwnProperty('error');
         expect(body.status).to.be.a('number');
-        expect(body.status).to.be.equals(403);
+        expect(body.status).to.be.equals(401);
         expect(body.error).to.be.equals('Unauthorized!, you have to login first');
         done();
       });
@@ -166,7 +166,7 @@ describe('POST api/v1/intervention', () => {
         expect(body).to.be.an('object');
         expect(body).to.haveOwnProperty('error');
         expect(body.status).to.be.a('number');
-        expect(body.status).to.be.equals(403);
+        expect(body.status).to.be.equals(401);
         expect(body.error).to.be.equals('Invalid token, you have to login first');
         done();
       });
@@ -348,7 +348,7 @@ describe('PATCH api/v1/intervention/:id/comment', () => {
 });
 
 describe('PATCH api/v1/intervention/:id/status', () => {
-  it('should return a 403 error if the user is not an admin', (done) => {
+  it('should return a 401 error if the user is not an admin', (done) => {
     chai.request(app)
       .patch('/api/v1/intervention/2/status')
       .set({ 'x-access-token': token })
@@ -357,7 +357,7 @@ describe('PATCH api/v1/intervention/:id/status', () => {
         const { body } = res;
         expect(body).to.be.an('object');
         expect(body.status).to.be.a('number');
-        expect(body.status).to.be.equals(403);
+        expect(body.status).to.be.equals(401);
         expect(body).to.haveOwnProperty('error');
         expect(body.error).to.equals('Unauthorized. Only an admin can perform this operation.');
         done();
