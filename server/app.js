@@ -1,6 +1,7 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
+import cors from 'cors';
 import swaggerUI from 'swagger-ui-express';
 import routes from './routes/index';
 import doc from '../doc.json';
@@ -13,6 +14,7 @@ const port = process.env.PORT;
 // Set up the express app
 const app = express();
 
+app.use(cors());
 // Parse incoming requests body data
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
