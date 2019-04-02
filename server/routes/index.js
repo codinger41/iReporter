@@ -17,6 +17,7 @@ const routes = (app) => {
   // red-flag routes
   app.post('/api/v1/red-flags', AuthRequired, validateNewRecords, RedFlagRecordsController.addRedFlagRecord);
   app.get('/api/v1/red-flags', RedFlagRecordsController.getAllRedFlagRecords);
+  app.get('/api/v1/myRecords', AuthRequired, RedFlagRecordsController.getAllRedFlagRecordsByUser);
   app.get('/api/v1/red-flags/:id', RedFlagRecordsController.getSpecificRedFlagRecord);
   app.patch('/api/v1/red-flags/:id/location', AuthRequired, userOwnsRecord, validatePatchLocation, RedFlagRecordsController.editRecordLocation);
   app.patch('/api/v1/red-flags/:id/comment', AuthRequired, userOwnsRecord, validatePatchComment, RedFlagRecordsController.editRecordComment);

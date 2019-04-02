@@ -1,3 +1,4 @@
+/* eslint-disable prefer-const */
 /* eslint-disable no-dupe-class-members */
 /* eslint-disable import/prefer-default-export */
 import ExpressValidator from 'express-validator/check';
@@ -194,5 +195,22 @@ export default class RedflagController {
         message: 'Red-flag record has been deleted.',
       }],
     });
+  }
+
+  static async getAllRedFlagRecordsByUser(req, res) {
+    let { query: { fieldName, fieldValue } } = req;
+    fieldValue = fieldValue === 'id' ? req.user.id : fieldValue;
+    const redFlagRecords = await Records.findAll({ fieldName, fieldValue });
+    if (redFlagRecords.rowCount >= 1) {
+      res.status(200).json({
+        status: 200,
+        data: redFlagRecords.rows,
+      });
+    } else {
+      res.status(200).json({
+        status: 204,
+        data: [],
+      });
+    }
   }
 }

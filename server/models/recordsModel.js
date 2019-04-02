@@ -47,9 +47,13 @@ export default class RecordModel {
     }
   }
 
-  static async findAll({ type }) {
+  static async findAll({ fieldName, fieldValue }) {
     try {
-      const query = type ? `SELECT * FROM records WHERE type= '${type}'` : 'SELECT * FROM records';
+      const query = fieldName && fieldValue
+        ? `
+        SELECT * FROM records
+        WHERE ${fieldName} = ${fieldName === 'id' ? Number(fieldValue) : fieldValue}
+        ` : 'SELECT * FROM records';
       const res = await pool.query(query);
       return res;
     } catch (error) {

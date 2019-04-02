@@ -51,7 +51,8 @@
     "nyc": "^13.1.0",
     "pg": "^7.7.1",
     "swagger-ui-express": "^4.0.2",
-    "validator": "^10.9.0"
+    "validator": "^10.9.0",
+    "volleyball": "^1.5.1"
   },
   "devDependencies": {
     "eslint-config-airbnb": "^17.1.0",
