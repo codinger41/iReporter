@@ -52,7 +52,7 @@ export default class RecordModel {
       const query = fieldName && fieldValue
         ? `
         SELECT * FROM records
-        WHERE ${fieldName} = ${fieldName === 'id' ? Number(fieldValue) : fieldValue}
+        WHERE ${fieldName} = ${fieldName === 'createdby' ? Number(fieldValue) : fieldValue}
         ` : 'SELECT * FROM records';
       const res = await pool.query(query);
       return res;
